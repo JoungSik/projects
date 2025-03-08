@@ -1,0 +1,25 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  project: one
+  assign_user: one
+  creator: one
+  title: MyString
+  description: MyText
+  type: 1
+  priority: 1
+  status: 1
+  start_at: 2025-03-08
+  end_at: 2025-03-08
+
+two:
+  project: two
+  assign_user: two
+  creator: two
+  title: MyString
+  description: MyText
+  type: 1
+  priority: 1
+  status: 1
+  start_at: 2025-03-08
+  end_at: 2025-03-08
