@@ -4,7 +4,7 @@ class Workspace < ApplicationRecord
 
   has_many :projects, dependent: :destroy
 
-  # nested_attributes_options
+  accepts_nested_attributes_for :workspace_users
 
   validates_presence_of :name
 end

@@ -1,0 +1,26 @@
+<header class="fixed top-0 left-0 right-0 h-16 bg-white border-b z-30 md:pl-64">
+  <div class="flex items-center h-full px-4">
+    <button data-action="click->sidebar#toggle" class="md:hidden p-2 text-gray-600 hover:text-indigo-600">
+      <%= lucide_icon "menu", class: "w-6 h-6" %>
+    </button>
+    <div class="flex items-center ml-4">
+      <%= link_to root_path, class: "text-xl font-bold text-gray-900" do %>
+        <%= t("app_name") %>
+      <% end %>
+    </div>
+    <div class="flex items-center ml-auto">
+      <!--      <a href="/notifications.html" class="p-2 text-gray-600 hover:text-indigo-600">-->
+      <%#= lucide_icon "bell", class: "w-6 h-6" %>
+      <!--      </a>-->
+      <div data-controller="dropdown" class="relative ml-2">
+        <button data-action="click->dropdown#toggle" class="h-8 w-8 rounded-full overflow-hidden">
+          <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop" class="h-full w-full object-cover" alt="<%= @current_user.name %>">
+        </button>
+        <div data-dropdown-target="menu" class="hidden absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-1 z-50">
+          <!--          <a href="/profile.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">My Profile</a>-->
+          <%= link_to t("shared.buttons.sign_out"), logout_path, data: { turbo_method: :delete }, class: "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>

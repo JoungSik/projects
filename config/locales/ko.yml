@@ -1,2 +1,21 @@
 ko:
   app_name: "프로젝트"
+
+  flash:
+    alert:
+      title: "오류"
+    notice:
+      title: "알림"
+
+  users:
+    email:
+      label: "이메일"
+      placeholder: "이메일 주소를 입력하세요"
+    password:
+      label: "비밀번호"
+      placeholder: "비밀번호를 입력하세요"
+
+  shared:
+    buttons:
+      sign_in: "로그인"
+      sign_out: "로그아웃"

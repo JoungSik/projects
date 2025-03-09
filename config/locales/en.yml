@@ -29,3 +29,22 @@
 
 en:
   app_name: "Projects"
+
+  flash:
+    alert:
+      title: "Error"
+    notice:
+      title: "Notification"
+
+  users:
+    email:
+      label: "Email"
+      placeholder: "Enter your email address"
+    password:
+      label: "Password"
+      placeholder: "Enter your password"
+
+  shared:
+    buttons:
+      sign_in: "Sign In"
+      sign_out: "Sign Out"
