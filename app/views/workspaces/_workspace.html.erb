@@ -1,0 +1,29 @@
+<%= link_to workspace, class: "block bg-white rounded-xl shadow-sm p-6 hover:shadow-md transition" do %>
+  <div class="flex items-center justify-between mb-4">
+    <div class="flex items-center">
+      <div class="h-10 w-10 bg-indigo-100 rounded-lg flex items-center justify-center">
+        <%= lucide_icon "briefcase", class: "w-6 h-6 text-indigo-600" %>
+      </div>
+      <div class="ml-3">
+        <h3 class="font-semibold text-gray-900"><%= workspace.name %></h3>
+        <p class="text-sm text-gray-500"><%= workspace.projects.count %> projects</p>
+      </div>
+    </div>
+    <% case workspace.workspace_users.find_by(user_id: @current_user.id).role %>
+    <% when "owner" %>
+      <span class="px-2 py-1 text-xs bg-indigo-50 text-indigo-700 rounded-full">Owner</span>
+    <% when "member" %>
+      <span class="px-2 py-1 text-xs bg-gray-100 text-gray-700 rounded-full">Member</span>
+    <% else %>
+      <span class="px-2 py-1 text-xs bg-gray-100 text-gray-700 rounded-full">Member</span>
+    <% end %>
+  </div>
+  <div class="flex items-center justify-between">
+    <div class="flex -space-x-2">
+      <% workspace.workspace_users.each do |workspace_user| %>
+        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop"
+             class="w-8 h-8 rounded-full border-2 border-white" alt="<%= workspace_user.user.name %>">
+      <% end %>
+    </div>
+  </div>
+<% end %>
