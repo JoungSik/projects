@@ -22,7 +22,7 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body class="min-h-screen bg-gray-50" data-controller="sidebar">
+  <body class="min-h-screen bg-gray-50" data-controller="sidebar modal">
     <% if authenticated? %>
       <%= render "shared/header" %>
       <%= render "shared/sidebar" %>
@@ -30,5 +30,7 @@
     <main class="pt-24 px-4 md:px-6 pb-8 <%= authenticated? ? "md:ml-64" : "" %>">
       <%= yield %>
     </main>
+
+    <%= render "workspaces/modal" %>
   </body>
 </html>

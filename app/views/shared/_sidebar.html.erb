@@ -8,7 +8,7 @@
   <div class="p-4">
     <div class="flex items-center justify-between mb-4">
       <h2 class="font-semibold text-gray-600">Workspaces</h2>
-      <button onclick="openModal('workspaceModal')" class="text-gray-400 hover:text-indigo-600">
+      <button data-action="modal#open" data-modal-id="workspaceModal" class="text-gray-400 hover:text-indigo-600 cursor-pointer">
         <%= lucide_icon "plus", class: "w-5 h-5" %>
       </button>
     </div>
