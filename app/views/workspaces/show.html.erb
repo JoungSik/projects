@@ -1,5 +1,10 @@
 <div class="mb-8">
-  <h1 class="text-2xl font-bold text-gray-900"><%= @workspace.name %></h1>
+  <div class="flex items-center space-x-3">
+    <h1 class="text-2xl font-bold text-gray-900"><%= @workspace.name %></h1>
+    <button class="p-1 text-gray-400 hover:text-indigo-600 rounded-full hover:bg-gray-100 cursor-pointer">
+      <%= lucide_icon "edit", class: "w-5 h-5" %>
+    </button>
+  </div>
   <p class="text-gray-500"><%= @workspace.projects.count %> projects</p>
 </div>
 
@@ -35,4 +40,11 @@
       <% end %>
     </div>
   </div>
+</div>
+
+<div class="mt-12 flex justify-center">
+  <button class="flex items-center px-4 py-2 text-sm font-medium text-red-600 hover:text-red-700 hover:bg-red-50 rounded-lg transition-colors cursor-pointer">
+    <%= lucide_icon "trash-2", class: "w-4 h-4 mr-2" %>
+    Delete Workspace
+  </button>
 </div>

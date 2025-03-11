@@ -1,9 +1,6 @@
 <%= form_with url: workspaces_url, class: "bg-white rounded-xl shadow-lg w-full max-w-lg mx-4" do |form| %>
   <div class="flex items-center justify-between p-6 border-b">
     <h2 class="text-xl font-semibold text-gray-900">Workspace</h2>
-    <button data-action="modal#close" class="text-gray-400 hover:text-gray-600">
-      <%= lucide_icon "x", class: "w-5 h-5" %>
-    </button>
   </div>
 
   <div class="p-6 space-y-6">
@@ -42,7 +39,8 @@
   </div>
 
   <div class="flex items-center justify-end gap-3 px-6 py-4 bg-gray-50 rounded-b-xl">
-    <button data-action="modal#close" class="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 cursor-pointer">
+    <button type="button" data-action="click->modal#close"
+            class="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 cursor-pointer">
       Cancel
     </button>
     <%= form.submit "save", class: "px-4 py-2 text-sm font-medium text-white bg-indigo-600 rounded-lg hover:bg-indigo-700 cursor-pointer" %>
