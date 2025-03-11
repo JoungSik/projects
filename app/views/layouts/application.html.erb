@@ -26,11 +26,11 @@
     <% if authenticated? %>
       <%= render "shared/header" %>
       <%= render "shared/sidebar" %>
+
+      <%= render "workspaces/modal" %>
     <% end %>
     <main class="pt-24 px-4 md:px-6 pb-8 <%= authenticated? ? "md:ml-64" : "" %>">
       <%= yield %>
     </main>
-
-    <%= render "workspaces/modal" %>
   </body>
 </html>
