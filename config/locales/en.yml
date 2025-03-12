@@ -44,6 +44,11 @@ en:
       label: "Password"
       placeholder: "Enter your password"
 
+  sessions:
+    messages:
+      rate_limit: "Try again later."
+      not_authenticate: "Try another email address or password."
+
   workspaces:
     title: "Workspace"
     blank:

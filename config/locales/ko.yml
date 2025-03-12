@@ -15,6 +15,11 @@ ko:
       label: "비밀번호"
       placeholder: "비밀번호를 입력하세요"
 
+  sessions:
+    messages:
+      rate_limit: "나중에 다시 시도해 보세요."
+      not_authenticate: "다른 이메일 주소나 비밀번호를 시도해 보세요."
+
   workspaces:
     title: "작업공간"
     blank:
