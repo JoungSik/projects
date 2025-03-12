@@ -23,6 +23,8 @@
   </head>
 
   <body class="min-h-screen bg-gray-50" data-controller="sidebar">
+    <%= render "shared/notice" %>
+
     <% if authenticated? %>
       <%= render "shared/header" %>
       <%= render "shared/sidebar" %>
