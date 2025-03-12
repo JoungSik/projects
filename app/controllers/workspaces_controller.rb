@@ -23,7 +23,7 @@ class WorkspacesController < ApplicationController
     @workspace = Workspace.new(workspace_params.merge!(workspace_user_params))
 
     if @workspace.save
-      redirect_to @workspace, notice: "Workspace was successfully created."
+      redirect_to @workspace, notice: t(".messages.created")
     else
       render :new, status: :unprocessable_entity
     end
@@ -32,7 +32,7 @@ class WorkspacesController < ApplicationController
   # PATCH/PUT /workspaces/1
   def update
     if @workspace.update(workspace_params)
-      redirect_to @workspace, notice: "Workspace was successfully updated.", status: :see_other
+      redirect_to @workspace, notice: t(".messages.updated"), status: :see_other
     else
       render :edit, status: :unprocessable_entity
     end
@@ -41,7 +41,7 @@ class WorkspacesController < ApplicationController
   # DELETE /workspaces/1
   def destroy
     @workspace.destroy!
-    redirect_to root_path, notice: "Workspace was successfully destroyed.", status: :see_other
+    redirect_to root_path, notice: t(".messages.destroyed"), status: :see_other
   end
 
   private

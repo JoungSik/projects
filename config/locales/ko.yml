@@ -15,7 +15,42 @@ ko:
       label: "비밀번호"
       placeholder: "비밀번호를 입력하세요"
 
+  workspaces:
+    title: "작업공간"
+    blank:
+      title: "작업공간이 없어요"
+      description: "작업공간을 생성해서 작업을 시작하세요"
+    name:
+      label: "제목"
+      placeholder: "제목을 입력하세요"
+    buttons:
+      create: "작업공간 생성"
+      destroy: "작업공간 삭제"
+    messages:
+      created: "작업공간이 성공적으로 생성되었습니다."
+      updated: "작업공간이 성공적으로 수정되었습니다."
+      destroyed: "작업공간이 성공적으로 삭제되었습니다."
+
+  workspace_users:
+    title: "참여자"
+
+  projects:
+    title: "프로젝트"
+    count:
+      zero: "프로젝트가 없습니다."
+      one: "1 프로젝트"
+      other: "%{count} 프로젝트"
+
+  activerecord:
+    attributes:
+      workspace_user:
+        role:
+          0: "관리자"
+          1: "참여자"
+
   shared:
     buttons:
+      save: "저장"
+      cancel: "취소"
       sign_in: "로그인"
       sign_out: "로그아웃"

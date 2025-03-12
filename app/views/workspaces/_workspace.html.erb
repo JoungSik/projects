@@ -6,17 +6,12 @@
       </div>
       <div class="ml-3">
         <h3 class="font-semibold text-gray-900"><%= workspace.name %></h3>
-        <p class="text-sm text-gray-500"><%= workspace.projects.count %> projects</p>
+        <p class="text-sm text-gray-500"><%= t("projects.count", count: workspace.projects.count) %></p>
       </div>
     </div>
-    <% case workspace.workspace_users.find_by(user_id: @current_user.id).role %>
-    <% when "owner" %>
-      <span class="px-2 py-1 text-xs bg-indigo-50 text-indigo-700 rounded-full">Owner</span>
-    <% when "member" %>
-      <span class="px-2 py-1 text-xs bg-gray-100 text-gray-700 rounded-full">Member</span>
-    <% else %>
-      <span class="px-2 py-1 text-xs bg-gray-100 text-gray-700 rounded-full">Member</span>
-    <% end %>
+    <span class="<%= "px-2 py-1 text-xs bg-indigo-50 text-#{workspace_role_color(workspace.workspace_users.find_by(workspace: workspace, user: @current_user))}-700 rounded-full" %>">
+      <%= t("activerecord.attributes.workspace_user.role.#{workspace.workspace_users.find_by(workspace: workspace, user: @current_user).role}") %>
+    </span>
   </div>
   <div class="flex items-center justify-between">
     <div class="flex -space-x-2">

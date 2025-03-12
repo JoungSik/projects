@@ -44,7 +44,42 @@ en:
       label: "Password"
       placeholder: "Enter your password"
 
+  workspaces:
+    title: "Workspace"
+    blank:
+      title: "No workspaces"
+      description: "Create a workspace to start working"
+    name:
+      label: "Title"
+      placeholder: "Enter title"
+    buttons:
+      create: "Create Workspace"
+      destroy: "Delete Workspace"
+    messages:
+      created: "Workspace has been successfully created."
+      updated: "Workspace has been successfully updated."
+      destroyed: "Workspace has been successfully deleted."
+
+  workspace_users:
+    title: "Participants"
+
+  projects:
+    title: "Projects"
+    count:
+      zero: "No projects"
+      one: "1 Project"
+      other: "%{count} Projects"
+
+  activerecord:
+    attributes:
+      workspace_user:
+        role:
+          0: "owner"
+          1: "member"
+
   shared:
     buttons:
+      save: "Save"
+      cancel: "Cancel"
       sign_in: "Sign In"
       sign_out: "Sign Out"

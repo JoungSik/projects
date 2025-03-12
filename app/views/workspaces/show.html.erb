@@ -5,12 +5,12 @@
       <%= lucide_icon "edit", class: "w-5 h-5" %>
     <% end %>
   </div>
-  <p class="text-gray-500"><%= @workspace.projects.count %> projects</p>
+  <p class="text-gray-500"><%= t("projects.count", count: @workspace.projects.count) %></p>
 </div>
 
 <div class="mb-8">
   <div class="flex items-center justify-between mb-6">
-    <h2 class="text-xl font-bold text-gray-900">Projects</h2>
+    <h2 class="text-xl font-bold text-gray-900"><%= t("projects.title") %></h2>
   </div>
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
     <% @workspace.projects.each do |project| %>
@@ -28,15 +28,15 @@
 
 <div>
   <div class="flex items-center justify-between mb-6">
-    <h2 class="text-xl font-bold text-gray-900">Members</h2>
-    <button class="text-gray-400 hover:text-indigo-600">
-      <%= lucide_icon "user-plus", class: "w-5 h-5" %>
-    </button>
+    <h2 class="text-xl font-bold text-gray-900"><%= t("workspace_users.title") %></h2>
+    <!--    <button class="text-gray-400 hover:text-indigo-600">-->
+    <%#= lucide_icon "user-plus", class: "w-5 h-5" %>
+    <!--    </button>-->
   </div>
   <div class="bg-white rounded-xl shadow-sm p-6">
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
       <% @workspace.workspace_users.each do |workspace_user| %>
-        <%= render "member", user: workspace_user.user, role: workspace_user.role %>
+        <%= render "workspace_user", workspace_user: workspace_user %>
       <% end %>
     </div>
   </div>
@@ -47,6 +47,6 @@
                 class: "flex items-center px-4 py-2 text-sm font-medium text-red-600 hover:text-red-700 hover:bg-red-50 rounded-lg transition-colors cursor-pointer",
                 data: { turbo_confirm: "Are you sure?" } do %>
     <%= lucide_icon "trash-2", class: "w-4 h-4 mr-2" %>
-    Delete Workspace
+    <%= t("workspaces.buttons.destroy") %>
   <% end %>
 </div>
