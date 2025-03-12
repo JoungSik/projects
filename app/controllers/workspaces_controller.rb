@@ -41,7 +41,7 @@ class WorkspacesController < ApplicationController
   # DELETE /workspaces/1
   def destroy
     @workspace.destroy!
-    redirect_to workspaces_path, notice: "Workspace was successfully destroyed.", status: :see_other
+    redirect_to root_path, notice: "Workspace was successfully destroyed.", status: :see_other
   end
 
   private
@@ -53,7 +53,7 @@ class WorkspacesController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def workspace_params
-    params.permit(:name)
+    params.require(:workspace).permit(:name)
   end
 
   def workspace_user_params

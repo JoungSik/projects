@@ -1,4 +1,4 @@
-<%= form_with url: workspaces_url, class: "bg-white rounded-xl shadow-lg w-full max-w-lg mx-4" do |form| %>
+<%= form_with(model: workspace, class: "bg-white rounded-xl shadow-lg w-full max-w-lg mx-4") do |form| %>
   <div class="flex items-center justify-between p-6 border-b">
     <h2 class="text-xl font-semibold text-gray-900">Workspace</h2>
   </div>
@@ -39,10 +39,7 @@
   </div>
 
   <div class="flex items-center justify-end gap-3 px-6 py-4 bg-gray-50 rounded-b-xl">
-    <button type="button" data-action="click->modal#close"
-            class="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 cursor-pointer">
-      Cancel
-    </button>
+    <%= link_to "cancel", :back, class: "px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 cursor-pointer" %>
     <%= form.submit "save", class: "px-4 py-2 text-sm font-medium text-white bg-indigo-600 rounded-lg hover:bg-indigo-700 cursor-pointer" %>
   </div>
 <% end %>

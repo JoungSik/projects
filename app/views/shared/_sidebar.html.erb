@@ -8,9 +8,9 @@
   <div class="p-4">
     <div class="flex items-center justify-between mb-4">
       <h2 class="font-semibold text-gray-600">Workspaces</h2>
-      <button data-action="modal#open" data-modal-id="workspaceModal" class="text-gray-400 hover:text-indigo-600 cursor-pointer">
+      <%= link_to new_workspace_path, class: "text-gray-400 hover:text-indigo-600 cursor-pointer" do %>
         <%= lucide_icon "plus", class: "w-5 h-5" %>
-      </button>
+      <% end %>
     </div>
     <div class="space-y-2">
       <% @workspaces.each do |workspace| %>

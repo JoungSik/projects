@@ -13,7 +13,7 @@
                      password: 'qwer1234', password_confirmation: 'qwer1234')
 
   2.times do |j|
-    workspace = Workspace.create(name: "Workspace #{j}",
+    workspace = Workspace.create(name: "Workspace #{i}#{j}",
                                  workspace_users_attributes: { '0': { user: user, role: WorkspaceUser.roles[:owner] } })
     5.times do |k|
       project = Project.create(title: "Project #{j}#{k}", description: "Description #{j}#{k}",
