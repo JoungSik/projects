@@ -50,7 +50,7 @@ en:
       not_authenticate: "Try another email address or password."
 
   workspaces:
-    title: "Workspace"
+    header: "Workspace"
     blank:
       title: "No workspaces"
       description: "Create a workspace to start working"
@@ -66,14 +66,16 @@ en:
       destroyed: "Workspace has been successfully deleted."
 
   workspace_users:
-    title: "Participants"
+    header: "Participants"
 
   projects:
-    title: "Projects"
+    header: "Projects"
     count:
       zero: "No projects"
       one: "1 Project"
       other: "%{count} Projects"
+    buttons:
+      create: "Create Project"
 
   activerecord:
     attributes:

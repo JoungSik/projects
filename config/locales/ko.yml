@@ -21,7 +21,7 @@ ko:
       not_authenticate: "다른 이메일 주소나 비밀번호를 시도해 보세요."
 
   workspaces:
-    title: "작업공간"
+    header: "작업공간"
     blank:
       title: "작업공간이 없어요"
       description: "작업공간을 생성해서 작업을 시작하세요"
@@ -37,14 +37,16 @@ ko:
       destroyed: "작업공간이 성공적으로 삭제되었습니다."
 
   workspace_users:
-    title: "참여자"
+    header: "참여자"
 
   projects:
-    title: "프로젝트"
+    header: "프로젝트"
     count:
       zero: "프로젝트가 없습니다."
       one: "1 프로젝트"
       other: "%{count} 프로젝트"
+    buttons:
+      create: "프로젝트 생성"
 
   activerecord:
     attributes:
