@@ -88,8 +88,39 @@ en:
       destroyed: "Project has been successfully deleted."
 
   tasks:
+    header: "Tasks"
+    blank:
+      title: "No tasks in current status"
+      description: "Try moving tasks!"
+    count:
+      zero: "No tasks"
+      one: "1 Task in progress"
+      other: "%{count} Tasks in progress"
+    title:
+      label: "Title"
+      placeholder: "Enter title"
+    description:
+      label: "Description"
+      placeholder: "Enter description"
+    type:
+      label: "Task Type"
+    priority:
+      label: "Priority"
+    status:
+      label: "Status"
+    start_at:
+      label: "Start Date"
+    end_at:
+      label: "Due Date"
+    assign_user:
+      label: "Assignee"
     buttons:
       create: "Create Task"
+      edit: "Edit Task"
+    messages:
+      created: "Task has been successfully created."
+      updated: "Task has been successfully updated."
+      destroyed: "Task has been successfully deleted."
 
   activerecord:
     attributes:
@@ -97,6 +128,23 @@ en:
         role:
           0: "owner"
           1: "member"
+      task:
+        type:
+          planning: "Planning"
+          feature: "Feature"
+          issue: "Issue"
+        priority:
+          critical: "P0 - Critical"
+          high: "P1 - High"
+          medium: "P2 - Medium"
+          low: "P3 - Low"
+          trivial: "P4 - Planning"
+        status:
+          not_started: "Not Started"
+          in_progress: "In Progress"
+          overdue: "Overdue"
+          completed: "Completed"
+          cancelled: "Cancelled"
 
   shared:
     confirm:

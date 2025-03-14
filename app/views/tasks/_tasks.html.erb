@@ -1,0 +1,22 @@
+<div class="bg-white rounded-xl shadow-sm p-4">
+  <h3 class="font-semibold text-gray-900 mb-4 flex items-center">
+    <%= lucide_icon task_status_title_icon(index), class: "w-5 h-5 mr-2 text-#{task_status_title_color(index)}-500" %>
+    <%= t("activerecord.attributes.task.status.#{Task.statuses.key(index)}") %>
+    <span class="ml-2 px-2 py-1 text-xs bg-gray-100 text-gray-600 rounded-full"><%= count %></span>
+  </h3>
+  <% if count == 0 %>
+    <div class="flex flex-col items-center justify-center py-8 text-center">
+      <div class="bg-gray-50 rounded-full p-3 mb-4">
+        <%= lucide_icon "check-circle", class: "w-8 h-8 text-gray-400" %>
+      </div>
+      <p class="text-gray-500 text-sm"><%= t("tasks.blank.title") %></p>
+      <p class="text-gray-400 text-xs mt-1"><%= t("tasks.blank.description") %></p>
+    </div>
+  <% else %>
+    <div class="space-y-4">
+      <% tasks&.each do |task| %>
+        <%= render "tasks/task", workspace: workspace, project: project, task: task %>
+      <% end %>
+    </div>
+  <% end %>
+</div>

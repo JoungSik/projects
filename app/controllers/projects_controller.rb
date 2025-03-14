@@ -4,6 +4,7 @@ class ProjectsController < ApplicationController
 
   # GET /projects/1
   def show
+    @tasks = @project.tasks.group_by(&:status)
   end
 
   # GET /projects/new
@@ -29,7 +30,7 @@ class ProjectsController < ApplicationController
   # PATCH/PUT /projects/1
   def update
     if @project.update(project_params)
-      redirect_to workspace_path(@workspace), notice: t(".messages.updated"), status: :see_other
+      redirect_to workspace_project_path(@workspace, @project), notice: t(".messages.updated"), status: :see_other
     else
       render :edit, status: :unprocessable_entity
     end

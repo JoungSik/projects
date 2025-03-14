@@ -22,6 +22,8 @@ Rails.application.routes.draw do
   resources :passwords, param: :token
 
   resources :workspaces, except: :index do
-    resources :projects, except: :index
+    resources :projects, except: :index do
+      resources :tasks, except: :index
+    end
   end
 end

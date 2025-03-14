@@ -1,0 +1,53 @@
+<div class="fixed inset-0 flex items-center justify-center bg-black/75 z-45">
+  <div class="bg-white rounded-xl shadow-lg w-full max-w-lg mx-4">
+    <div class="flex items-center justify-between p-6 border-b">
+      <div class="flex items-center space-x-3">
+        <h2 class="text-xl font-semibold text-gray-900"><%= @task.title %></h2>
+        <span class="<%= "px-2 py-1 text-xs bg-#{task_priority_color(@task)}-100 text-#{task_priority_color(@task)}-700 rounded-full" %>">
+          <%= t("activerecord.attributes.task.priority.#{@task.priority}") %>
+        </span>
+      </div>
+    </div>
+    <div class="p-6 space-y-6">
+      <div>
+        <h3 class="text-sm font-medium text-gray-700 mb-2"><%= t("tasks.description.label") %></h3>
+        <p class="text-gray-600"><%= @task.description %></p>
+      </div>
+      <div class="grid grid-cols-2 gap-6">
+        <div>
+          <h3 class="text-sm font-medium text-gray-700 mb-2"><%= t("tasks.type.label") %></h3>
+          <span class="<%= "inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-#{task_type_color(@task)}-100 text-#{task_type_color(@task)}-700" %>">
+            <%= t("activerecord.attributes.task.type.#{@task.type}") %>
+          </span>
+        </div>
+        <div>
+          <h3 class="text-sm font-medium text-gray-700 mb-2"><%= t("tasks.status.label") %></h3>
+          <span class="<%= "inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-#{task_status_color(@task)}-100 text-#{task_status_color(@task)}-700" %>">
+            <%= t("activerecord.attributes.task.status.#{@task.status}") %>
+          </span>
+        </div>
+        <div>
+          <h3 class="text-sm font-medium text-gray-700 mb-2"><%= t("tasks.start_at.label") %></h3>
+          <p class="text-gray-600"><%= @task.start_at.try(:strftime, "%Y.%m.%d") %></p>
+        </div>
+        <div>
+          <h3 class="text-sm font-medium text-gray-700 mb-2"><%= t("tasks.end_at.label") %></h3>
+          <p class="text-gray-600"><%= @task.end_at.try(:strftime, "%Y.%m.%d") %></p>
+        </div>
+      </div>
+      <div>
+        <h3 class="text-sm font-medium text-gray-700 mb-2"><%= t("tasks.assign_user.label") %></h3>
+        <div class="flex items-center space-x-3">
+          <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop" class="w-8 h-8 rounded-full"
+               alt="<%= @task.assign_user.name %>">
+          <span class="text-gray-600"><%= @task.assign_user.name %></span>
+        </div>
+      </div>
+    </div>
+    <div class="flex items-center justify-end gap-3 px-6 py-4 bg-gray-50 rounded-b-xl">
+      <%= link_to t("shared.buttons.cancel"), workspace_project_path(@workspace, @project), class: "px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 cursor-pointer" %>
+      <%= link_to t("tasks.buttons.edit"), edit_workspace_project_task_path(@workspace, @project, @task),
+                  class: "px-4 py-2 text-sm font-medium text-white bg-indigo-600 rounded-lg hover:bg-indigo-700 cursor-pointer" %>
+    </div>
+  </div>
+</div>
