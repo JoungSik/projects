@@ -74,8 +74,22 @@ en:
       zero: "No projects"
       one: "1 Project"
       other: "%{count} Projects"
+    title:
+      label: "Title"
+      placeholder: "Enter title"
+    description:
+      label: "Description"
+      placeholder: "Enter description"
     buttons:
       create: "Create Project"
+    messages:
+      created: "Project has been successfully created."
+      updated: "Project has been successfully updated."
+      destroyed: "Project has been successfully deleted."
+
+  tasks:
+    buttons:
+      create: "Create Task"
 
   activerecord:
     attributes:
@@ -85,6 +99,8 @@ en:
           1: "member"
 
   shared:
+    confirm:
+      destroy: "Are you sure?"
     buttons:
       save: "Save"
       cancel: "Cancel"

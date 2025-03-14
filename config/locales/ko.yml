@@ -45,8 +45,22 @@ ko:
       zero: "프로젝트가 없습니다."
       one: "1 프로젝트"
       other: "%{count} 프로젝트"
+    title:
+      label: "제목"
+      placeholder: "제목을 입력하세요"
+    description:
+      label: "설명"
+      placeholder: "설명을 입력하세요"
     buttons:
       create: "프로젝트 생성"
+    messages:
+      created: "프로젝트가 성공적으로 생성되었습니다."
+      updated: "프로젝트가 성공적으로 수정되었습니다."
+      destroyed: "프로젝트가 성공적으로 삭제되었습니다."
+
+  tasks:
+    buttons:
+      create: "작업 생성"
 
   activerecord:
     attributes:
@@ -56,6 +70,8 @@ ko:
           1: "참여자"
 
   shared:
+    confirm:
+      destroy: "확실하나요?"
     buttons:
       save: "저장"
       cancel: "취소"
