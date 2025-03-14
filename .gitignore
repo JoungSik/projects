@@ -37,5 +37,3 @@
 !/app/assets/builds/.keep
 
 .idea
-db/schema.rb
-db/*_schema.rb
