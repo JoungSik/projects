@@ -37,12 +37,19 @@ en:
       title: "Notification"
 
   users:
+    header: "Profile Information"
+    name:
+      label: "Name"
+      placeholder: "Enter your name"
     email:
       label: "Email"
       placeholder: "Enter your email address"
     password:
       label: "Password"
       placeholder: "Enter your password"
+    messages:
+      updated: "User has been successfully updated."
+      destroyed: "User has been successfully deleted."
 
   sessions:
     messages:
@@ -152,5 +159,6 @@ en:
     buttons:
       save: "Save"
       cancel: "Cancel"
+      my_profile: "My Profile"
       sign_in: "Sign In"
       sign_out: "Sign Out"

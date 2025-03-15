@@ -14,10 +14,10 @@
       <!--      </a>-->
       <div data-controller="dropdown" class="relative ml-2">
         <button data-action="click->dropdown#toggle" class="h-8 w-8 rounded-full overflow-hidden">
-          <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop" class="h-full w-full object-cover" alt="<%= @current_user.name %>">
+          <img src="<%= avatar(@current_user) %>" class="h-full w-full object-cover" alt="<%= @current_user.name %>">
         </button>
         <div data-dropdown-target="menu" class="hidden absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-1 z-50">
-          <!--          <a href="/profile.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">My Profile</a>-->
+          <%= link_to t("shared.buttons.my_profile"), edit_user_path(@current_user), class: "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" %>
           <%= link_to t("shared.buttons.sign_out"), logout_path, data: { turbo_method: :delete }, class: "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" %>
         </div>
       </div>

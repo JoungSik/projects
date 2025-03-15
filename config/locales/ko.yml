@@ -8,12 +8,19 @@ ko:
       title: "알림"
 
   users:
+    header: "프로필 정보"
+    name:
+      label: "이름"
+      placeholder: "이름을 입력하세요"
     email:
       label: "이메일"
       placeholder: "이메일 주소를 입력하세요"
     password:
       label: "비밀번호"
       placeholder: "비밀번호를 입력하세요"
+    messages:
+      updated: "유저가 성공적으로 수정되었습니다."
+      destroyed: "유저가 성공적으로 삭제되었습니다."
 
   sessions:
     messages:
@@ -117,12 +124,12 @@ ko:
           completed: "완료"
           cancelled: "취소"
 
-
   shared:
     confirm:
       destroy: "확실하나요?"
     buttons:
       save: "저장"
       cancel: "취소"
+      my_profile: "내정보"
       sign_in: "로그인"
       sign_out: "로그아웃"

@@ -1,0 +1,50 @@
+<%= form_with(model: user, class: "p-8 space-y-6") do |form| %>
+  <h2 class="text-lg font-semibold text-gray-900 mb-4"><%= t("users.header") %></h2>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div>
+      <label for="name" class="block text-sm font-medium text-gray-700 mb-2"><%= t("users.name.label") %></label>
+      <%= form.text_field :name,
+                          required: true,
+                          placeholder: t("users.name.placeholder"),
+                          value: user.name,
+                          class: "w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500" %>
+    </div>
+    <div>
+      <label for="email" class="block text-sm font-medium text-gray-700 mb-2"><%= t("users.email.label") %></label>
+      <%= form.email_field :email,
+                           required: true,
+                           placeholder: t("users.email.placeholder"),
+                           value: user.email,
+                           class: "w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500" %>
+    </div>
+  </div>
+
+  <!--  <div>-->
+  <!--    <h2 class="text-lg font-semibold text-gray-900 mb-4">Notification Preferences</h2>-->
+  <!--    <div class="space-y-4">-->
+  <!--      <div class="flex items-center justify-between">-->
+  <!--        <div>-->
+  <!--          <h3 class="text-sm font-medium text-gray-900">Email Notifications</h3>-->
+  <!--          <p class="text-sm text-gray-500">Receive email notifications for important updates</p>-->
+  <!--        </div>-->
+  <!--        <button onclick="toggleNotification('emailNotif')" class="relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 bg-indigo-600" id="emailNotif">-->
+  <!--          <span class="translate-x-5 inline-block h-5 w-5 transform rounded-full bg-white transition duration-200 ease-in-out"></span>-->
+  <!--        </button>-->
+  <!--      </div>-->
+  <!--      <div class="flex items-center justify-between">-->
+  <!--        <div>-->
+  <!--          <h3 class="text-sm font-medium text-gray-900">Desktop Notifications</h3>-->
+  <!--          <p class="text-sm text-gray-500">Show desktop notifications for new tasks</p>-->
+  <!--        </div>-->
+  <!--        <button onclick="toggleNotification('desktopNotif')" class="relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 bg-gray-200" id="desktopNotif">-->
+  <!--          <span class="translate-x-0 inline-block h-5 w-5 transform rounded-full bg-white transition duration-200 ease-in-out"></span>-->
+  <!--        </button>-->
+  <!--      </div>-->
+  <!--    </div>-->
+  <!--  </div>-->
+
+  <div class="flex justify-end">
+    <%= form.submit t("shared.buttons.save"), class: "px-4 py-2 text-sm font-medium text-white bg-indigo-600 rounded-lg hover:bg-indigo-700 cursor-pointer" %>
+  </div>
+<% end %>
