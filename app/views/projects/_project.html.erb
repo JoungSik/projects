@@ -6,7 +6,7 @@
   <div class="flex items-center justify-between mt-6">
     <div class="flex items-center text-sm text-gray-600">
       <%= lucide_icon "check-circle", class: "w-4 h-4 mr-1" %>
-      <span><%= t("tasks.count", count: project.tasks.count) %></span>
+      <span><%= t("tasks.count", count: project.tasks.ongoing.count) %></span>
     </div>
   </div>
 <% end %>

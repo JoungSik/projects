@@ -18,6 +18,8 @@ class Task < ApplicationRecord
 
   before_validation :set_end_at_if_blank
 
+  scope :ongoing, -> { where(status: [ :not_started, :in_progress, :overdue ]) }
+
   private
 
   def set_end_at_if_blank
