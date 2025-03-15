@@ -1,5 +1,7 @@
 ko:
-  app_name: "프로젝트"
+  app:
+    name: "Projects"
+    title: "Projects - 개인 프로젝트 관리 및 협업툴"
 
   flash:
     alert:

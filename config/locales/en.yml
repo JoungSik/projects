@@ -28,7 +28,9 @@
 #       enabled: "ON"
 
 en:
-  app_name: "Projects"
+  app:
+    name: "Projects"
+    title: "Projects - Personal project management and collaboration tools"
 
   flash:
     alert:
