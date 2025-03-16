@@ -5,6 +5,7 @@ export default class extends Controller {
   static targets = ["container", "remainingDays"]
   static values = { startAt: String, endAt: String }
 
+  // class="text-gray-500 text-red-500"
   connect() {
     const startDate = new Date(this.startAtValue);
     const endDate = new Date(this.endAtValue);

@@ -1,4 +1,8 @@
 module TasksHelper
+
+  # class="bg-purple-100 text-purple-700"
+  # class="bg-blue-100 text-blue-700"
+  # class="bg-red-100 text-red-700""
   def task_type_color(task)
     case task.type_before_type_cast
     when 0 then "purple"
@@ -8,6 +12,9 @@ module TasksHelper
     end
   end
 
+  # class="bg-red-100 text-red-700"
+  # class="bg-orange-100 text-orange-700"
+  # class="bg-gray-100 text-gray-700"
   def task_priority_color(task)
     case task.priority_before_type_cast
     when 0, 1 then "red"
@@ -17,6 +24,9 @@ module TasksHelper
     end
   end
 
+  # class="border-black-200 bg-black-100 text-black-700"
+  # class="border-red-200 bg-red-100 text-red-700"
+  # class="border-green-200 bg-green-100 text-green-700"
   def task_status_color(task)
     case task.status_before_type_cast
     when 0, 1 then "black"
@@ -37,6 +47,11 @@ module TasksHelper
     end
   end
 
+  # class="text-gray-500"
+  # class="text-blue-500"
+  # class="text-green-500"
+  # class="text-yellow-500"
+  # class="text-red-500"
   def task_status_title_color(status)
     case status
     when 0 then "gray"
