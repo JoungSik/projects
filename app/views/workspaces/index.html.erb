@@ -1,9 +1,9 @@
-<% if @workspaces %>
+<% if @workspaces.present? %>
   <div class="flex items-center justify-between mb-8">
     <h1 class="text-2xl font-bold text-gray-900"><%= t("workspaces.header") %></h1>
   </div>
 <% else %>
-  <div class="min-h-screen flex items-center justify-center p-4">
+  <div class="flex items-center justify-center p-4">
     <div class="text-center">
       <div class="flex justify-center">
         <%= lucide_icon "briefcase", class: "w-16 h-16 text-gray-400" %>
