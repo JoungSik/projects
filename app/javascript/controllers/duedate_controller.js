@@ -20,6 +20,9 @@ export default class extends Controller {
     if (remainingDays > 0) {
       this.containerTarget.classList.add("text-gray-500");
       this.remainingDaysTarget.innerText = `${remainingDays}일 남음`;
+    } else if (remainingDays === 0) {
+      this.containerTarget.classList.add("text-red-500");
+      this.remainingDaysTarget.innerText = "오늘 마감";
     } else {
       this.containerTarget.classList.add("text-red-500");
       this.remainingDaysTarget.innerText = `${Math.abs(remainingDays)}일 지남`;
