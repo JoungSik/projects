@@ -4,7 +4,8 @@ class ProjectsController < ApplicationController
 
   # GET /projects/1
   def show
-    @tasks = @project.tasks.group_by(&:status)
+    @tasks = @project.tasks.order(tasks: { priority: :asc, end_at: :asc })
+                     .group_by(&:status)
   end
 
   # GET /projects/new
