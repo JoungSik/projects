@@ -3,6 +3,6 @@ class MarkOverdueTasksJob < ApplicationJob
 
   def perform
     today = Time.zone.today
-    Task.where(end_at: ...today).where.not(status: :overdue).update_all(status: :overdue)
+    Task.where(end_at: ...today, status: :not_started).update_all(status: :overdue)
   end
 end
