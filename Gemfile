@@ -24,7 +24,10 @@ gem "bcrypt", "~> 3.1.7"
 gem "tzinfo-data", platforms: %i[ windows jruby ]
 
 # Use the database-backed adapters for Rails.cache, Active Job, and Action Cable
-# gem "solid_queue"
+gem "solid_queue"
+
+# Dashboard and Active Job extensions to operate and troubleshoot background jobs [https://github.com/rails/mission_control-jobs]
+gem "mission_control-jobs"
 
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", require: false
