@@ -1,3 +1,2 @@
 web: bin/rails server
-job: bin/jobs
 css: bin/rails tailwindcss:watch

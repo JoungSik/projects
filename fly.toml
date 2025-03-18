@@ -18,7 +18,6 @@ console_command = '/rails/bin/rails console'
 
 [processes]
   app = './bin/rails server'
-  worker = './bin/rails solid_queue:start'
 
 [[mounts]]
   source = 'data'
