@@ -8,3 +8,15 @@
 #     command: "SoftDeletedRecord.due.delete_all"
 #     priority: 2
 #     schedule: at 5am every day
+
+development:
+  mark_overdue_tasks:
+    class: MarkOverdueTasksJob
+    queue: scheduled
+    schedule: every hour
+
+production:
+  mark_overdue_tasks:
+    class: MarkOverdueTasksJob
+    queue: scheduled
+    schedule: every hour
