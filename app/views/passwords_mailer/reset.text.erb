@@ -1,2 +1,8 @@
-You can reset your password within the next 15 minutes on this password reset page:
+<%= t("email.passwords.reset.subject") %>
+
+<%= t("email.passwords.reset.content", app_name: t("app.name")) %>
 <%= edit_password_url(@user.password_reset_token) %>
+
+Note: <%= t("email.passwords.reset.notice") %>
+
+<%= t("email.passwords.reset.ignore") %>

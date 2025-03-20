@@ -38,6 +38,14 @@ en:
     notice:
       title: "Notification"
 
+  email:
+    passwords:
+      reset:
+        subject: "Reset your password"
+        content: "We received a request to reset your password for your %{app_name} account. Click the button below to create a new password. This link will expire in 15 minutes."
+        notice: "This link will expire in 15 minutes for security reasons."
+        ignore: "If you didn't request a password reset, you can safely ignore this email. Your password will remain unchanged."
+
   users:
     header: "Profile Information"
     name:
@@ -59,10 +67,19 @@ en:
       not_authenticate: "Try another email address or password."
 
   passwords:
-    header: "Reset Password"
+    new:
+      header: "Reset Password"
+    edit:
+      header: "Create New Password"
     email:
       label: "Email"
       placeholder: "Enter your email address"
+    new_password:
+      label: "New Password"
+      placeholder: "Enter new password"
+    confirm_new_password:
+      label: "Confirm New Password"
+      placeholder: "Enter new password again"
     messages:
       create: "Password reset instructions sent (if user with that email address exists)."
       update: "Password has been reset."

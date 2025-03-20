@@ -1,14 +1,112 @@
 <!DOCTYPE html>
-<html>
+<html lang="ko">
   <head>
-    <title><%= t("app.title") %></title>
+    <title><%= t("email.passwords.reset.subject") %></title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <style>
-        /* Email styles need to be inline */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.5;
+            color: #1F2937;
+            background-color: #F9FAFB;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 48px 24px;
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+
+        .logo-icon {
+            width: 48px;
+            height: 48px;
+            padding: 12px;
+            background-color: #EEF2FF;
+            border-radius: 12px;
+            margin-bottom: 16px;
+        }
+
+        .content {
+            background-color: #FFFFFF;
+            border-radius: 12px;
+            padding: 32px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            margin: 0 0 16px;
+            font-size: 24px;
+            font-weight: bold;
+            color: #111827;
+        }
+
+        p {
+            margin: 0 0 24px;
+            color: #4B5563;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: #4F46E5;
+            color: #FFFFFF;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 500;
+            margin-bottom: 24px;
+        }
+
+        .button:hover {
+            background-color: #4338CA;
+        }
+
+        .footer {
+            margin-top: 32px;
+            text-align: center;
+            font-size: 14px;
+            color: #6B7280;
+        }
+
+        .footer p {
+            margin: 0 0 8px;
+        }
+
+        .expiry-notice {
+            display: inline-block;
+            padding: 8px 16px;
+            background-color: #FEF3C7;
+            color: #92400E;
+            border-radius: 6px;
+            font-size: 14px;
+            margin: 24px 0;
+        }
+
+        .help-text {
+            font-size: 14px;
+            color: #6B7280;
+            margin-top: 24px;
+        }
     </style>
   </head>
-
   <body>
-    <%= yield %>
+    <div class="container">
+      <div class="logo">
+        <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="#4F46E5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+          <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+        </svg>
+        <h2 style="margin: 0; color: #4F46E5; font-size: 20px;"><%= t("app.name") %></h2>
+      </div>
+      <div class="content">
+        <%= yield %>
+      </div>
+    </div>
   </body>
 </html>

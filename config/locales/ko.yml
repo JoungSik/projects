@@ -9,6 +9,14 @@ ko:
     notice:
       title: "알림"
 
+  email:
+    passwords:
+      reset:
+        subject: "비밀번호 재설정"
+        content: "%{app_name} 계정의 비밀번호 재설정 요청을 받았습니다. 아래 버튼을 클릭하여 새 비밀번호를 생성하세요. 이 링크는 15분 후에 만료됩니다."
+        notice: "보안상의 이유로 이 링크는 15분 후에 만료됩니다."
+        ignore: "비밀번호 재설정을 요청하지 않으셨다면 이 이메일을 무시하셔도 됩니다. 비밀번호는 변경되지 않은 상태로 유지됩니다."
+
   users:
     header: "프로필 정보"
     name:
@@ -30,10 +38,19 @@ ko:
       not_authenticate: "다른 이메일 주소나 비밀번호를 시도해 보세요."
 
   passwords:
-    header: "비밀번호 재설정"
+    new:
+      header: "비밀번호 재설정"
+    edit:
+      header: "새 비밀번호 생성"
     email:
       label: "이메일"
       placeholder: "이메일 주소를 입력하세요"
+    new_password:
+      label: "새 비밀번호"
+      placeholder: "새 비밀번호를 입력하세요"
+    confirm_new_password:
+      label: "새 비밀번호 확인"
+      placeholder: "새 비밀번호를 다시 입력하세요"
     messages:
       create: "비밀번호 재설정 안내가 전송되었습니다 (해당 이메일 주소의 사용자가 존재하는 경우)."
       update: "비밀번호가 재설정되었습니다."

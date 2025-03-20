@@ -1,4 +1,12 @@
-<p>
-  You can reset your password within the next 15 minutes on
-  <%= link_to "this password reset page", edit_password_url(@user.password_reset_token) %>.
-</p>
+<div class="content">
+  <h1><%= t("email.passwords.reset.subject") %></h1>
+  <p><%= t("email.passwords.reset.content", app_name: t("app.name")) %></p>
+
+  <%= link_to t("passwords.header"), edit_password_url(@user.password_reset_token), class: "button" %>
+
+  <div class="expiry-notice">
+    <strong>Note:</strong> <%= t("email.passwords.reset.notice") %>
+  </div>
+
+  <p><%= t("email.passwords.reset.ignore") %></p>
+</div>
