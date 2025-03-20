@@ -24,15 +24,15 @@ module TasksHelper
     end
   end
 
-  # class="border-black-200 bg-black-100 text-black-700"
+  # class="border-gray-200 bg-gray-100 text-gray-700"
   # class="border-red-200 bg-red-100 text-red-700"
   # class="border-green-200 bg-green-100 text-green-700"
   def task_status_color(task)
     case task.status_before_type_cast
-    when 0, 1 then "black"
-    when 2 then "red"
-    when 3, 4 then "green"
-    else "black"
+    when 0, 1 then "gray"
+    when 2, 4 then "red"
+    when 3 then "green"
+    else "gray"
     end
   end
 
@@ -40,9 +40,9 @@ module TasksHelper
     case status
     when 0 then "clock"
     when 1 then "loader"
-    when 2 then "check-circle"
-    when 3 then "x-circle"
-    when 4 then "alert-circle"
+    when 2 then "alert-circle"
+    when 3 then "check-circle"
+    when 4 then "x-circle"
     else "loader"
     end
   end
@@ -56,8 +56,8 @@ module TasksHelper
     case status
     when 0 then "gray"
     when 1 then "blue"
-    when 2 then "green"
-    when 3 then "yellow"
+    when 2 then "yellow"
+    when 3 then "green"
     when 4 then "red"
     else "gray"
     end
