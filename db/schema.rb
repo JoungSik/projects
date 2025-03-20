@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_03_08_043224) do
+ActiveRecord::Schema[8.0].define(version: 2025_03_20_173652) do
   create_table "projects", force: :cascade do |t|
     t.string "title", null: false
     t.text "description"
@@ -51,6 +51,23 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_08_043224) do
     t.index ["project_id"], name: "index_tasks_on_project_id"
   end
 
+  create_table "user_invitations", force: :cascade do |t|
+    t.integer "inviter_id", null: false
+    t.string "invitee_email", null: false
+    t.string "token", null: false
+    t.datetime "invited_at", null: false
+    t.text "message"
+    t.integer "invitee_id", null: false
+    t.datetime "expires_at"
+    t.integer "status", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["invitee_email"], name: "index_user_invitations_on_invitee_email", unique: true
+    t.index ["invitee_id"], name: "index_user_invitations_on_invitee_id"
+    t.index ["inviter_id"], name: "index_user_invitations_on_inviter_id"
+    t.index ["token"], name: "index_user_invitations_on_token", unique: true
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "name", null: false
     t.string "email", null: false
@@ -84,6 +101,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_08_043224) do
   add_foreign_key "tasks", "projects"
   add_foreign_key "tasks", "users", column: "assign_user_id"
   add_foreign_key "tasks", "users", column: "creator_id"
+  add_foreign_key "user_invitations", "users", column: "invitee_id"
+  add_foreign_key "user_invitations", "users", column: "inviter_id"
   add_foreign_key "workspace_users", "users"
   add_foreign_key "workspace_users", "workspaces"
 end

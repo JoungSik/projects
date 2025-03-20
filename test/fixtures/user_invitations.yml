@@ -1,0 +1,21 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  inviter: one
+  invitee_email: MyString
+  token: MyString
+  invited_at: 2025-03-21 02:36:52
+  message: MyText
+  invitee: one
+  expires_at: 2025-03-21 02:36:52
+  status: 1
+
+two:
+  inviter: two
+  invitee_email: MyString
+  token: MyString
+  invited_at: 2025-03-21 02:36:52
+  message: MyText
+  invitee: two
+  expires_at: 2025-03-21 02:36:52
+  status: 1
