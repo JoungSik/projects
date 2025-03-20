@@ -58,6 +58,19 @@ en:
       rate_limit: "Try again later."
       not_authenticate: "Try another email address or password."
 
+  passwords:
+    header: "Reset Password"
+    email:
+      label: "Email"
+      placeholder: "Enter your email address"
+    messages:
+      create: "Password reset instructions sent (if user with that email address exists)."
+      update: "Password has been reset."
+      error_update: "Passwords did not match."
+      invalid_token: "Password reset link is invalid or has expired."
+    buttons:
+      send: "Send Reset Instructions"
+
   workspaces:
     header: "Workspace"
     blank:
@@ -162,5 +175,6 @@ en:
       save: "Save"
       cancel: "Cancel"
       my_profile: "My Profile"
+      forgot_password: "Forgot your password?"
       sign_in: "Sign In"
       sign_out: "Sign Out"

@@ -29,6 +29,19 @@ ko:
       rate_limit: "나중에 다시 시도해 보세요."
       not_authenticate: "다른 이메일 주소나 비밀번호를 시도해 보세요."
 
+  passwords:
+    header: "비밀번호 재설정"
+    email:
+      label: "이메일"
+      placeholder: "이메일 주소를 입력하세요"
+    messages:
+      create: "비밀번호 재설정 안내가 전송되었습니다 (해당 이메일 주소의 사용자가 존재하는 경우)."
+      update: "비밀번호가 재설정되었습니다."
+      error_update: "비밀번호가 일치하지 않습니다."
+      invalid_token: "비밀번호 재설정 링크가 유효하지 않거나 만료되었습니다."
+    buttons:
+      send: "재설정 안내 보내기"
+
   workspaces:
     header: "작업공간"
     blank:
@@ -133,5 +146,6 @@ ko:
       save: "저장"
       cancel: "취소"
       my_profile: "내정보"
+      forgot_password: "비밀번호를 잊으셨나요?"
       sign_in: "로그인"
       sign_out: "로그아웃"
