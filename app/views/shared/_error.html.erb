@@ -1,0 +1,13 @@
+<% if errors.any? %>
+  <div data-controller="slide-down" data-slide-down-target="notice" data-slide-down-duration-value="5000"
+       class="fixed top-0 left-0 right-0 bg-red-600 text-white p-4 z-50 transform -translate-y-full">
+    <% errors.full_messages.each do |message| %>
+      <div class="max-w-7xl mx-auto flex items-center justify-between">
+        <div class="flex items-center">
+          <%= lucide_icon "circle-alert", class: "w-5 h-5 mr-2" %>
+          <p><%= message %></p>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% end %>

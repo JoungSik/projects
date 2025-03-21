@@ -1,4 +1,6 @@
 <%= form_with(model: [@workspace, project], class: "bg-white rounded-xl shadow-lg w-full max-w-lg mx-4") do |form| %>
+  <%= render "shared/error", errors: project.errors %>
+
   <%= form.hidden_field :owner_id, value: @current_user.id %>
   <%= form.hidden_field :creator_id, value: @current_user.id %>
   <%= form.hidden_field :workspace_id, value: @workspace.id %>
