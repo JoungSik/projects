@@ -13,10 +13,10 @@ development:
   mark_overdue_tasks:
     class: MarkOverdueTasksJob
     queue: scheduled
-    schedule: every hour
+    schedule: at 0am every day
 
 production:
   mark_overdue_tasks:
     class: MarkOverdueTasksJob
     queue: scheduled
-    schedule: every hour
+    schedule: at 0am every day
