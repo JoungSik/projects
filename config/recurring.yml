@@ -13,10 +13,18 @@ development:
   mark_overdue_tasks:
     class: MarkOverdueTasksJob
     queue: scheduled
-    schedule: at 0am every day
+    schedule: 0 0 * * *
+  cleanup_finished_jobs:
+    class: CleanupFinishedJobsJob
+    queue: system
+    schedule: 0 0 * * *
 
 production:
   mark_overdue_tasks:
     class: MarkOverdueTasksJob
     queue: scheduled
-    schedule: at 0am every day
+    schedule: 0 0 * * *
+  cleanup_finished_jobs:
+    class: CleanupFinishedJobsJob
+    queue: system
+    schedule: 0 0 * * *
