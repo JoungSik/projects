@@ -16,7 +16,7 @@ class Task < ApplicationRecord
   PRIORITY_DEFAULT = priorities[:trivial]
   STATUS_DEFAULT = statuses[:not_started]
 
-  before_validation :set_end_at_if_blank
+  before_validation :set_end_at_if_blank, :mark_as_overdue_if_needed
 
   scope :ongoing, -> { where(status: [ :not_started, :in_progress, :overdue ]) }
 
@@ -24,5 +24,9 @@ class Task < ApplicationRecord
 
   def set_end_at_if_blank
     self.end_at ||= self.start_at
+  end
+
+  def mark_as_overdue_if_needed
+    overdue! if not_started? && self.end_at < Time.zone.now
   end
 end
