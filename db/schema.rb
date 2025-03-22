@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_03_20_173652) do
+ActiveRecord::Schema[8.0].define(version: 2025_03_21_131800) do
   create_table "projects", force: :cascade do |t|
     t.string "title", null: false
     t.text "description"
@@ -56,8 +56,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_20_173652) do
     t.string "invitee_email", null: false
     t.string "token", null: false
     t.datetime "invited_at", null: false
-    t.text "message"
-    t.integer "invitee_id", null: false
+    t.string "message"
+    t.integer "invitee_id"
     t.datetime "expires_at"
     t.integer "status", default: 0, null: false
     t.datetime "created_at", null: false

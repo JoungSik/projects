@@ -6,6 +6,7 @@ class User < ApplicationRecord
   has_many :workspaces, through: :workspace_users
 
   has_many :sent_user_invitations, foreign_key: :inviter_id, class_name: "UserInvitation", dependent: :destroy
+  has_one :received_user_invitation, foreign_key: :invitee_id, class_name: "UserInvitation", dependent: :destroy
 
   normalizes :email, with: ->(e) { e.strip.downcase }
 

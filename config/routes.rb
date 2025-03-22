@@ -22,7 +22,8 @@ Rails.application.routes.draw do
 
   resources :passwords, param: :token
 
-  resources :users, only: [ :edit, :update, :destroy ]
+  resources :users, except: [ :index, :show ]
+  resources :user_invitations, except: [ :show, :edit ]
 
   resources :workspaces, except: :index do
     resources :projects, except: :index do

@@ -60,7 +60,6 @@
             text-decoration: none;
             border-radius: 8px;
             font-weight: 500;
-            margin-bottom: 24px;
         }
 
         .button:hover {
@@ -91,7 +90,37 @@
         .help-text {
             font-size: 14px;
             color: #6B7280;
-            margin-top: 24px;
+        }
+
+        .inviter-info {
+            display: flex;
+            align-items: center;
+            margin-bottom: 24px;
+            padding: 16px;
+            background-color: #F3F4F6;
+            border-radius: 8px;
+        }
+
+        .inviter-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 12px;
+        }
+
+        .inviter-name {
+            font-weight: 500;
+            color: #111827;
+        }
+
+        .invite-message {
+            margin: 24px 0;
+            padding: 16px;
+            background-color: #F3F4F6;
+            border-radius: 8px;
+            font-style: italic;
+            color: #4B5563;
+            border-left: 4px solid #E5E7EB;
         }
     </style>
   </head>
@@ -106,6 +135,10 @@
       </div>
       <div class="content">
         <%= yield %>
+      </div>
+      <div class="footer">
+        <p><%= "© 2025 #{t("app.name")}. All rights reserved." %></p>
+        <p><%= "This email was sent to #{t("app.email")}" %></p>
       </div>
     </div>
   </body>

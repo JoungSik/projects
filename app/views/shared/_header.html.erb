@@ -18,6 +18,7 @@
         </button>
         <div data-dropdown-target="menu" class="hidden absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-1 z-50">
           <%= link_to t("shared.buttons.my_profile"), edit_user_path(@current_user), class: "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" %>
+          <%= link_to t("shared.buttons.invitation"), user_invitations_path, class: "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" %>
           <%= link_to t("shared.buttons.sign_out"), logout_path, data: { turbo_method: :delete }, class: "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" %>
         </div>
       </div>

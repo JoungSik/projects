@@ -1,0 +1,30 @@
+<h1><%= t("email.invitation.invite.subject", app_name: t("app.name")) %></h1>
+
+<div class="inviter-info">
+  <div>
+    <div class="inviter-name"><%= @user_invitation.inviter.name %></div>
+    <div style="color: #6B7280; font-size: 14px;">
+      <%= t("email.invitation.invite.inviter_info", app_name: t("app.name")) %>
+    </div>
+  </div>
+</div>
+
+<% if @user_invitation.message.present? %>
+  <div class="invite-message"><%= @user_invitation.message %></div>
+<% end %>
+
+<p>
+  <%= t("email.invitation.invite.invite_content", app_name: t("app.name")) %>
+</p>
+
+<%= link_to t("email.invitation.invite.invite_button"), new_user_url(token: @user_invitation.token), class: "button" %>
+
+<br />
+
+<div class="expiry-notice">
+  <strong>Note:</strong> <%= t("email.invitation.invite.notice", expiry: UserInvitation::EXPIRY.in_days.round) %>
+</div>
+
+<div class="help-text">
+  <p><%= t("email.invitation.invite.ignore") %></p>
+</div>

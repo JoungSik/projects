@@ -2,6 +2,7 @@ ko:
   app:
     name: "Projects"
     title: "Projects - 개인 프로젝트 관리 및 협업툴"
+    email: "tjstlr2010@gmail.com"
 
   flash:
     alert:
@@ -16,9 +17,24 @@ ko:
         content: "%{app_name} 계정의 비밀번호 재설정 요청을 받았습니다. 아래 버튼을 클릭하여 새 비밀번호를 생성하세요. 이 링크는 15분 후에 만료됩니다."
         notice: "보안상의 이유로 이 링크는 15분 후에 만료됩니다."
         ignore: "비밀번호 재설정을 요청하지 않으셨다면 이 이메일을 무시하셔도 됩니다. 비밀번호는 변경되지 않은 상태로 유지됩니다."
+    invitation:
+      invite:
+        subject: "%{app_name}에 초대되었습니다"
+        inviter_info: "님이 %{app_name}에 초대했습니다"
+        invite_content: "%{app_name}는 효율적인 프로젝트 관리 플랫폼입니다. 지금 가입하세요!"
+        notice: "이 초대는 %{expiry}일 후에 만료됩니다."
+        ignore: "이 초대를 기대하지 않으셨다면 이 이메일을 무시하셔도 됩니다."
+        invite_button: "가입하기"
+    shared:
+      buttons:
+        update: "변경하기"
 
   users:
-    header: "프로필 정보"
+    edit:
+      header: "프로필 정보"
+    new:
+      header: "회원가입"
+      inviter: "님이 초대했습니다"
     name:
       label: "이름"
       placeholder: "이름을 입력하세요"
@@ -28,9 +44,14 @@ ko:
     password:
       label: "비밀번호"
       placeholder: "비밀번호를 입력하세요"
+    confirm_password:
+      label: "비밀번호 확인"
+      placeholder: "비밀번호를 다시 입력하세요"
     messages:
+      created: "환영합니다."
       updated: "유저가 성공적으로 수정되었습니다."
       destroyed: "유저가 성공적으로 삭제되었습니다."
+      error_token: "초대가 유효하지 않습니다."
 
   sessions:
     messages:
@@ -132,6 +153,38 @@ ko:
       updated: "작업이 성공적으로 수정되었습니다."
       destroyed: "작업이 성공적으로 삭제되었습니다."
 
+  user_invitations:
+    index:
+      header: "대기중인 초대"
+      sub_header: "서비스 초대 관리"
+    blank:
+      title: "초대된 사용자가 없습니다."
+    new:
+      header: "사용자 초대"
+    email:
+      label: "이메일"
+      placeholder: "이메일 주소를 입력하세요"
+    message:
+      label: "초대 메시지 (선택사항)"
+      placeholder: "초대 메시지를 입력하세요"
+    notice:
+      expire: "초대는 %{expiry}일 후에 만료됩니다"
+    table:
+      columns:
+        email: "이메일"
+        invited_at: "초대일"
+        expires_at: "만료일"
+        status: "상태"
+        action: "작업"
+    buttons:
+      create: "새 사용자 초대"
+      resend: "재전송"
+      destroy: "삭제"
+    messages:
+      created: "사용자 초대가 성공적으로 생성되었습니다."
+      updated: "사용자 초대가 성공적으로 수정되었습니다."
+      destroyed: "사용자 초대가 성공적으로 삭제되었습니다."
+
   activerecord:
     attributes:
       workspace_user:
@@ -155,6 +208,17 @@ ko:
           overdue: "기한 초과"
           completed: "완료"
           cancelled: "취소"
+      user_invitation:
+        status:
+          pending: "대기중"
+          accepted: "수락됨"
+          expired: "만료됨"
+    errors:
+      models:
+        user_invitation:
+          attributes:
+            base:
+              email_un_invitable: "이 이메일은 초대할 수 없습니다"
 
   shared:
     confirm:
@@ -163,6 +227,8 @@ ko:
       save: "저장"
       cancel: "취소"
       my_profile: "내정보"
+      invitation: "초대"
       forgot_password: "비밀번호를 잊으셨나요?"
+      sign_up: "회원가입"
       sign_in: "로그인"
       sign_out: "로그아웃"

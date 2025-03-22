@@ -1,12 +1,12 @@
-<div class="content">
-  <h1><%= t("email.passwords.reset.subject") %></h1>
-  <p><%= t("email.passwords.reset.content", app_name: t("app.name")) %></p>
+<h1><%= t("email.passwords.reset.subject") %></h1>
+<p><%= t("email.passwords.reset.content", app_name: t("app.name")) %></p>
 
-  <%= link_to t("passwords.header"), edit_password_url(@user.password_reset_token), class: "button" %>
+<%= link_to t("email.shared.buttons.update"), edit_password_url(@user.password_reset_token), class: "button" %>
 
-  <div class="expiry-notice">
-    <strong>Note:</strong> <%= t("email.passwords.reset.notice") %>
-  </div>
+<br />
 
-  <p><%= t("email.passwords.reset.ignore") %></p>
+<div class="expiry-notice">
+  <strong>Note:</strong> <%= t("email.passwords.reset.notice") %>
 </div>
+
+<p><%= t("email.passwords.reset.ignore") %></p>

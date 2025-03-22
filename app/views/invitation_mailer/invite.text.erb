@@ -1,0 +1,15 @@
+<%= t("email.invitation.invite.subject", app_name: t("app.name")) %>
+
+<%= @user_invitation.inviter.name %> <%= t("email.invitation.invite.inviter_info", app_name: t("app.name")) %>
+
+<% if @user_invitation.message.present? %>
+  <%= @user_invitation.message %>
+<% end %>
+
+<%= t("email.invitation.invite.invite_content", app_name: t("app.name")) %>
+
+<%= new_user_url(token: @user_invitation.token) %>
+
+Note: <%= t("email.invitation.invite.notice", expiry: UserInvitation::EXPIRY.in_days.round) %>
+
+<%= t("email.invitation.invite.ignore") %>
