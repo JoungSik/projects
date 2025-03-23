@@ -27,6 +27,6 @@ class Task < ApplicationRecord
   end
 
   def mark_as_overdue_if_needed
-    overdue! if not_started? && self.end_at < Time.zone.now
+    overdue! if not_started? && self.end_at < Time.zone.today
   end
 end
