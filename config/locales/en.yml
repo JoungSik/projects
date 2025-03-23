@@ -261,3 +261,10 @@ en:
       sign_up: "Sign Up"
       sign_in: "Sign In"
       sign_out: "Sign Out"
+    message:
+      error:
+        not_found: "Not Found"
+        not_found_workspace: "Not Found workspace"
+        not_found_project: "Not Found project"
+        not_found_task: "Not Found task"
+        

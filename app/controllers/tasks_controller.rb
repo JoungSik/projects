@@ -44,19 +44,6 @@ class TasksController < ApplicationController
 
   private
 
-  def set_workspace
-    @workspace = Workspace.find(params.expect(:workspace_id))
-  end
-
-  def set_project
-    @project = Project.find(params.expect(:project_id))
-  end
-
-  # Use callbacks to share common setup or constraints between actions.
-  def set_task
-    @task = Task.find(params.expect(:id))
-  end
-
   # Only allow a list of trusted parameters through.
   def task_params
     params.require(:task).permit(:title, :description, :type, :priority, :status, :start_at, :end_at, :project_id, :assign_user_id, :creator_id)

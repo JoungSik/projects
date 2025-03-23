@@ -232,3 +232,9 @@ ko:
       sign_up: "회원가입"
       sign_in: "로그인"
       sign_out: "로그아웃"
+    message:
+      error:
+        not_found: "찾을 수 없습니다"
+        not_found_workspace: "작업공간을 찾을 수 없습니다"
+        not_found_project: "프로젝트를 찾을 수 없습니다"
+        not_found_task: "작업을 찾을 수 없습니다"

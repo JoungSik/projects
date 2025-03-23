@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   include Authentication
+  include LoadResourceContext
 
   before_action :require_authentication
 

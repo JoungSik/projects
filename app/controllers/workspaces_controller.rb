@@ -20,8 +20,8 @@ class WorkspacesController < ApplicationController
 
   # POST /workspaces
   def create
-    @workspace = Workspace.new(workspace_params.merge!(workspace_user_params))
-
+    @workspace = Workspace.new(workspace_params)
+    @workspace.workspace_users.build(user: @current_user, role: WorkspaceUser.roles[:owner])
     if @workspace.save
       redirect_to @workspace, notice: t(".messages.created")
     else
@@ -46,17 +46,8 @@ class WorkspacesController < ApplicationController
 
   private
 
-  # Use callbacks to share common setup or constraints between actions.
-  def set_workspace
-    @workspace = Workspace.find(params.expect(:id))
-  end
-
   # Only allow a list of trusted parameters through.
   def workspace_params
     params.require(:workspace).permit(:name)
-  end
-
-  def workspace_user_params
-    { workspace_users_attributes: { '0': { user_id: @current_user.id, role: WorkspaceUser.roles[:owner] } } }
   end
 end
