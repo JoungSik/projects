@@ -175,7 +175,6 @@ en:
     assign_user:
       label: "Assignee"
     buttons:
-      create: "Create Task"
       edit: "Edit Task"
     messages:
       created: "Task has been successfully created."

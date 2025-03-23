@@ -146,7 +146,6 @@ ko:
     assign_user:
       label: "담당자"
     buttons:
-      create: "작업 생성"
       edit: "작업 수정"
     messages:
       created: "작업이 성공적으로 생성되었습니다."
