@@ -1,5 +1,5 @@
 module UsersHelper
-  def avatar(user)
+  def avatar_url(user)
     color = ("b6e3f4".to_i(16) + user.id * 100) % 16777216
     new_hex = color.to_s(16).rjust(6, "0")
 

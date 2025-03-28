@@ -12,7 +12,7 @@
     <p class="text-sm text-gray-500 mt-1"><%= task.description %></p>
     <div class="mt-4 flex flex-col space-y-2">
       <div class="flex items-center">
-        <img src="<%= avatar(task.assign_user) %>"
+        <img src="<%= avatar_url(task.assign_user) %>"
              class="w-6 h-6 rounded-full" alt="<%= task.assign_user.name %>">
         <span class="text-xs text-gray-500 ml-2"><%= task.assign_user.name %></span>
       </div>

@@ -14,7 +14,7 @@
       <!--      </a>-->
       <div data-controller="dropdown" class="relative ml-2">
         <button data-action="click->dropdown#toggle" class="h-8 w-8 rounded-full overflow-hidden">
-          <img src="<%= avatar(@current_user) %>" class="h-full w-full object-cover cursor-pointer" alt="<%= @current_user.name %>">
+          <img src="<%= avatar_url(@current_user) %>" class="h-full w-full object-cover cursor-pointer" alt="<%= @current_user.name %>">
         </button>
         <div data-dropdown-target="menu" class="hidden absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-1 z-50">
           <%= link_to t("shared.buttons.my_profile"), edit_user_path(@current_user), class: "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" %>

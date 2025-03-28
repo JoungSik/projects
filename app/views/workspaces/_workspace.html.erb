@@ -16,7 +16,7 @@
   <div class="flex items-center justify-between">
     <div class="flex -space-x-2">
       <% workspace.workspace_users.each do |workspace_user| %>
-        <img src="<%= avatar(workspace_user.user) %>"
+        <img src="<%= avatar_url(workspace_user.user) %>"
              class="w-8 h-8 rounded-full border-2 border-white" alt="<%= workspace_user.user.name %>">
       <% end %>
     </div>
