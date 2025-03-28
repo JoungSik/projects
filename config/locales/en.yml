@@ -33,6 +33,52 @@ en:
     title: "Projects - Personal project management and collaboration tools"
     email: "tjstlr2010@gmail.com"
 
+  dashboard:
+    header: "My Task Overview"
+    card:
+      total:
+        header: "Total Tasks"
+      in_progress:
+        header: "In Progress"
+      completed:
+        header: "Completed"
+      overdue:
+        header: "Overdue"
+        notice: "Requires attention"
+      tasks: "tasks"
+    area:
+      task:
+        header: "My Tasks"
+        section:
+          overdue: "Overdue (%{count})"
+          due_today: "Due Today (%{count})"
+          due_this_week: "Due This Week (%{count})"
+          blank:
+            description: "There are no tasks due today."
+        blank:
+          title: "No Tasks Yet"
+          description: "Get started by creating your first task"
+      workspace:
+        header: "My Workspaces"
+        blank:
+          title: "No workspaces"
+          description: "Create a workspace to start working"
+      weekly_progress:
+        header: "Weekly Progress"
+        blank:
+          title: "No Progress Data"
+          description: "Complete tasks to see your weekly progress"
+        day:
+          0: "Sun"
+          1: "Mon"
+          2: "Tue"
+          3: "Wed"
+          4: "Thu"
+          5: "Fri"
+          6: "Sat"
+      recent_updates:
+        header: "Recent Updates"
+
   flash:
     alert:
       title: "Error"
@@ -266,4 +312,3 @@ en:
         not_found_workspace: "Not Found workspace"
         not_found_project: "Not Found project"
         not_found_task: "Not Found task"
-        

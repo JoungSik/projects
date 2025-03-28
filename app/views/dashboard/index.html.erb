@@ -1,0 +1,201 @@
+<div class="max-w-7xl mx-auto">
+  <div class="mb-8">
+    <h2 class="text-2xl font-bold text-gray-900 mb-6"><%= t("dashboard.header") %></h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div class="bg-white rounded-xl p-6 shadow-sm">
+        <div class="flex items-center justify-between mb-4">
+          <div class="bg-indigo-100 rounded-full p-2">
+            <%= lucide_icon "list-checks", class: "w-6 h-6 text-indigo-600" %>
+          </div>
+          <span class="text-sm font-medium text-gray-500"><%= t("dashboard.card.total.header") %></span>
+        </div>
+        <div class="flex items-baseline">
+          <span class="text-3xl font-bold text-gray-900"><%= @tasks_by_status_count[:total] %></span>
+          <span class="ml-2 text-sm text-gray-500"><%= t("dashboard.card.tasks") %></span>
+        </div>
+        <div class="mt-2 flex items-center">
+          <div class="flex-1 bg-gray-100 rounded-full h-2">
+            <div class="bg-indigo-600 h-2 rounded-full"
+                 style="<%= "width: #{combined_status_percentage([ :in_progress, :completed, :cancelled ], @tasks_by_status_count)}%" %>"></div>
+          </div>
+          <span class="ml-2 text-sm font-medium text-gray-600">
+            <%= "#{combined_status_percentage([ :in_progress, :completed, :cancelled ], @tasks_by_status_count)}%" %>
+          </span>
+        </div>
+      </div>
+      <div class="bg-white rounded-xl p-6 shadow-sm">
+        <div class="flex items-center justify-between mb-4">
+          <div class="bg-blue-100 rounded-full p-2">
+            <%= lucide_icon "loader", class: "w-6 h-6 text-blue-600" %>
+          </div>
+          <span class="text-sm font-medium text-gray-500"><%= t("dashboard.card.in_progress.header") %></span>
+        </div>
+        <div class="flex items-baseline">
+          <span class="text-3xl font-bold text-gray-900"><%= @tasks_by_status_count[:in_progress] %></span>
+          <span class="ml-2 text-sm text-gray-500"><%= t("dashboard.card.tasks") %></span>
+        </div>
+      </div>
+      <div class="bg-white rounded-xl p-6 shadow-sm">
+        <div class="flex items-center justify-between mb-4">
+          <div class="bg-green-100 rounded-full p-2">
+            <%= lucide_icon "check-circle", class: "w-6 h-6 text-green-600" %>
+          </div>
+          <span class="text-sm font-medium text-gray-500"><%= t("dashboard.card.completed.header") %></span>
+        </div>
+        <div class="flex items-baseline">
+          <span class="text-3xl font-bold text-gray-900"><%= @tasks_by_status_count[:completed] %></span>
+          <span class="ml-2 text-sm text-gray-500"><%= t("dashboard.card.tasks") %></span>
+        </div>
+      </div>
+      <div class="bg-white rounded-xl p-6 shadow-sm">
+        <div class="flex items-center justify-between mb-4">
+          <div class="bg-red-100 rounded-full p-2">
+            <%= lucide_icon "alert-circle", class: "w-6 h-6 text-red-600" %>
+          </div>
+          <span class="text-sm font-medium text-gray-500"><%= t("dashboard.card.overdue.header") %></span>
+        </div>
+        <div class="flex items-baseline">
+          <span class="text-3xl font-bold text-gray-900"><%= @tasks_by_status_count[:overdue] %></span>
+          <span class="ml-2 text-sm text-gray-500"><%= t("dashboard.card.tasks") %></span>
+        </div>
+        <% if @tasks_by_status_count[:overdue] != 0 %>
+          <div class="mt-2 text-sm text-red-600">
+            <%= lucide_icon "alert-triangle", class: "w-4 h-4 inline" %>
+            <span><%= t("dashboard.card.overdue.notice") %></span>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+    <div class="lg:col-span-2 space-y-6">
+      <div class="bg-white rounded-xl shadow-sm">
+        <div class="p-6 border-b">
+          <h3 class="text-lg font-semibold text-gray-900"><%= t("dashboard.area.task.header") %></h3>
+        </div>
+        <% if @tasks_by_due_status.values.flatten.any? %>
+          <div class="p-6 space-y-6">
+            <%= render "task_dut_status", status: "overdue", tasks: @tasks_by_due_status[:overdue] %>
+            <%= render "task_dut_status", status: "due_today", tasks: @tasks_by_due_status[:due_today] %>
+            <%= render "task_dut_status", status: "due_this_week", tasks: @tasks_by_due_status[:due_this_week] %>
+          </div>
+        <% else %>
+          <div class="p-6">
+            <div class="flex flex-col items-center justify-center py-12 text-center">
+              <div class="bg-gray-50 rounded-full p-3 mb-4">
+                <%= lucide_icon "clipboard-list", class: "w-8 h-8 text-gray-400" %>
+              </div>
+              <h3 class="text-lg font-medium text-gray-900 mb-2"><%= t("dashboard.area.task.blank.title") %></h3>
+              <p class="text-gray-500 mb-6"><%= t("dashboard.area.task.blank.description") %></p>
+            </div>
+          </div>
+        <% end %>
+      </div>
+      <div class="bg-white rounded-xl shadow-sm p-6">
+        <h3 class="text-lg font-semibold text-gray-900 mb-6"><%= t("dashboard.area.weekly_progress.header") %></h3>
+        <% if @weekly_completed_tasks_count.uniq != [ 0 ] %>
+          <div class="h-64 flex items-end justify-between">
+            <% sorted_unique_scores = @weekly_completed_tasks_count.uniq.sort
+                                                                   .each_with_index.to_h { |score, index| [ score, index + 1 ] } %>
+            <% @weekly_completed_tasks_count.each_with_index do |count, index| %>
+              <div class="w-1/7 text-center">
+                <% if count > 0 %>
+                  <div class="<%= "#{weekly_progress_color(index)} #{weekly_progress_height(sorted_unique_scores[count])} rounded-t-lg relative" %>">
+                    <span class="absolute -top-6 left-1/2 transform -translate-x-1/2 text-sm font-medium text-gray-700">
+                      <%= count %>
+                    </span>
+                  </div>
+                <% end %>
+                <p class="text-xs text-center mt-2 text-gray-500">
+                  <%= t("dashboard.area.weekly_progress.day.#{index < 6 ? index + 1 : 0}") %>
+                </p>
+              </div>
+            <% end %>
+          </div>
+        <% else %>
+          <div class="flex flex-col items-center justify-center py-6 text-center">
+            <div class="bg-gray-50 rounded-full p-3 mb-4">
+              <%= lucide_icon "bar-chart", class: "w-8 h-8 text-gray-400" %>
+            </div>
+            <h3 class="text-lg font-medium text-gray-900 mb-2"><%= t("dashboard.area.weekly_progress.blank.title") %></h3>
+            <p class="text-gray-500"><%= t("dashboard.area.weekly_progress.blank.description") %></p>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <div class="space-y-6">
+      <div class="bg-white rounded-xl shadow-sm">
+        <div class="p-6 border-b">
+          <h3 class="text-lg font-semibold text-gray-900"><%= t("dashboard.area.workspace.header") %></h3>
+        </div>
+        <% if @workspaces.any? %>
+          <div class="p-6 space-y-4">
+            <% @workspaces.each do |workspace| %>
+              <%= render "workspace", workspace: workspace %>
+            <% end %>
+          </div>
+        <% else %>
+          <div class="flex flex-col items-center justify-center py-8 text-center">
+            <div class="bg-gray-50 rounded-full p-3 mb-4">
+              <%= lucide_icon "briefcase", class: "w-8 h-8 text-gray-400" %>
+            </div>
+            <h3 class="text-lg font-medium text-gray-900 mb-2"><%= t("dashboard.area.workspace.blank.title") %></h3>
+            <p class="text-gray-500 mb-6"><%= t("dashboard.area.workspace.blank.description") %></p>
+            <div class="space-y-3">
+              <%= link_to new_workspace_path,
+                          class: "w-full px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 inline-flex items-center justify-center cursor-pointer" do %>
+                <%= lucide_icon "plus", class: "w-5 h-5 mr-2" %>
+                <%= t("workspaces.buttons.create") %>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+      <!--      <div class="bg-white rounded-xl shadow-sm">-->
+      <!--        <div class="p-6 border-b">-->
+      <!--          <h3 class="text-lg font-semibold text-gray-900"><%#= t("dashboard.area.recent_updates.header") %></h3>-->
+      <!--        </div>-->
+      <!--        <div class="p-6">-->
+      <!--          <div class="space-y-6">-->
+      <!--            <div class="flex items-start space-x-3">-->
+      <!--              <div class="flex-shrink-0">-->
+      <!--                <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=100&h=100&fit=crop" class="w-8 h-8 rounded-full" alt="">-->
+      <!--              </div>-->
+      <!--              <div>-->
+      <!--                <p class="text-sm text-gray-900">-->
+      <!--                  <span class="font-medium">Alex Kim</span> completed-->
+      <!--                  <span class="font-medium">Database schema design</span>-->
+      <!--                </p>-->
+      <!--                <p class="text-xs text-gray-500 mt-1">2 hours ago</p>-->
+      <!--              </div>-->
+      <!--            </div>-->
+      <!--            <div class="flex items-start space-x-3">-->
+      <!--              <div class="flex-shrink-0">-->
+      <!--                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop" class="w-8 h-8 rounded-full" alt="">-->
+      <!--              </div>-->
+      <!--              <div>-->
+      <!--                <p class="text-sm text-gray-900">-->
+      <!--                  <span class="font-medium">Sarah Chen</span> added new task-->
+      <!--                  <span class="font-medium">Implement user authentication</span>-->
+      <!--                </p>-->
+      <!--                <p class="text-xs text-gray-500 mt-1">5 hours ago</p>-->
+      <!--              </div>-->
+      <!--            </div>-->
+      <!--            <div class="flex items-start space-x-3">-->
+      <!--              <div class="flex-shrink-0">-->
+      <!--                <img src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=100&h=100&fit=crop" class="w-8 h-8 rounded-full" alt="">-->
+      <!--              </div>-->
+      <!--              <div>-->
+      <!--                <p class="text-sm text-gray-900">-->
+      <!--                  <span class="font-medium">John Cooper</span> commented on-->
+      <!--                  <span class="font-medium">API documentation</span>-->
+      <!--                </p>-->
+      <!--                <p class="text-xs text-gray-500 mt-1">1 day ago</p>-->
+      <!--              </div>-->
+      <!--            </div>-->
+      <!--          </div>-->
+      <!--        </div>-->
+      <!--      </div>-->
+    </div>
+  </div>
+</div>

@@ -1,0 +1,28 @@
+<div class="<%= "p-4 bg-#{task_status_color(task)}-50 rounded-lg" %>">
+  <div class="flex items-center justify-between">
+    <div>
+      <div class="flex items-center space-x-2 mb-2">
+        <span class="<%= "px-2 py-1 text-xs rounded-full border font-semibold text-#{task_status_color(task)}-500 flex items-center" %>">
+          <%= lucide_icon task_status_title_icon(task.status_before_type_cast), class: "w-5 h-5 mr-2" %>
+          <%= t("activerecord.attributes.task.status.#{task.status}") %>
+        </span>
+        <span class="<%= "px-2 py-1 text-xs bg-#{task_type_color(task)}-100 text-#{task_type_color(task)}-700 rounded-full" %>">
+          <%= t("activerecord.attributes.task.type.#{task.type}") %>
+        </span>
+        <span class="<%= "px-2 py-1 text-xs bg-#{task_priority_color(task)}-100 text-#{task_priority_color(task)}-700 rounded-full" %>">
+          <%= t("activerecord.attributes.task.priority.#{task.priority}") %>
+        </span>
+      </div>
+      <h5 class="text-sm font-medium text-gray-900"><%= task.title %></h5>
+      <p class="text-sm text-gray-500"><%= task.project.title %></p>
+    </div>
+    <div data-controller="duedate"
+         data-duedate-target="container"
+         data-duedate-start-at-value="<%= task.start_at.try(:strftime, "%Y.%m.%d") %>"
+         data-duedate-end-at-value="<%= task.end_at.try(:strftime, "%Y.%m.%d") %>"
+         class="flex items-center text-xs">
+      <%= lucide_icon "calendar", class: "w-4 h-4 mr-1" %>
+      <span data-duedate-target="remainingDays"></span>
+    </div>
+  </div>
+</div>

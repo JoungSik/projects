@@ -1,0 +1,19 @@
+<div>
+  <h4 class="text-sm font-medium text-red-600 mb-4">
+    <%= t("dashboard.area.task.section.#{status}", count: tasks.count) %>
+  </h4>
+  <% if tasks.count == 0 %>
+    <div class="flex flex-col items-center justify-center py-8 text-center bg-gray-50 rounded-lg">
+      <div class="bg-gray-100 rounded-full p-3 mb-4">
+        <%= lucide_icon "check-circle", class: "w-8 h-8 text-gray-400" %>
+      </div>
+      <p class="text-gray-500"><%= t("dashboard.area.task.section.blank.description") %></p>
+    </div>
+  <% else %>
+    <div class="space-y-3">
+      <% tasks.each do |task| %>
+        <%= render "task", task: task %>
+      <% end %>
+    </div>
+  <% end %>
+</div>
