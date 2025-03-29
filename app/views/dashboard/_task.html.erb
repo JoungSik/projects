@@ -13,8 +13,7 @@
           <%= t("activerecord.attributes.task.priority.#{task.priority}") %>
         </span>
       </div>
-      <h5 class="text-sm font-medium text-gray-900"><%= task.title %></h5>
-      <p class="text-sm text-gray-500"><%= task.project.title %></p>
+      <h5 class="text-sm font-medium text-gray-900"><%= "#{task.project.title} > #{task.title}" %></h5>
     </div>
     <div data-controller="duedate"
          data-duedate-target="container"

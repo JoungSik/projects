@@ -2,6 +2,8 @@ class Task < ApplicationRecord
   # Using type column
   self.inheritance_column = nil
 
+  has_rich_text :description
+
   belongs_to :project
   belongs_to :assign_user, foreign_key: :assign_user_id, class_name: "User"
   belongs_to :creator, foreign_key: :creator_id, class_name: "User"

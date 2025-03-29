@@ -9,8 +9,7 @@
       </span>
     </div>
     <h4 class="font-medium text-gray-900"><%= task.title %></h4>
-    <p class="text-sm text-gray-500 mt-1"><%= task.description %></p>
-    <div class="mt-4 flex flex-col space-y-2">
+    <div class="mt-2 flex flex-col space-y-2">
       <div class="flex items-center">
         <img src="<%= avatar_url(task.assign_user) %>"
              class="w-6 h-6 rounded-full" alt="<%= task.assign_user.name %>">

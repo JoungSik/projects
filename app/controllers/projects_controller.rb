@@ -5,11 +5,13 @@ class ProjectsController < ApplicationController
   # GET /projects/1
   def show
     @tasks = @project.tasks.includes(:assign_user)
+                     .with_rich_text_description
                      .where(tasks: { updated_at: DateTime.now - 2.weeks... })
                      .order(tasks: { priority: :asc, end_at: :asc })
                      .group_by(&:status)
 
     @archived_tasks = @project.tasks.includes(:assign_user)
+                              .with_rich_text_description
                               .where(tasks: { status: [ :completed, :cancelled ], updated_at: ...DateTime.now - 2.weeks })
                               .order(tasks: { updated_at: :desc })
                               .group_by(&:status)
