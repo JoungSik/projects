@@ -45,7 +45,7 @@
       </div>
     </div>
     <div class="flex items-center justify-end gap-3 px-6 py-4 bg-gray-50 rounded-b-xl">
-      <%= link_to t("shared.buttons.cancel"), :back, class: "px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 cursor-pointer" %>
+      <%= link_to t("shared.buttons.cancel"), workspace_project_path(@workspace, @project), class: "px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 cursor-pointer" %>
       <%= link_to t("tasks.buttons.edit"), edit_workspace_project_task_path(@workspace, @project, @task),
                   class: "px-4 py-2 text-sm font-medium text-white bg-indigo-600 rounded-lg hover:bg-indigo-700 cursor-pointer" %>
     </div>

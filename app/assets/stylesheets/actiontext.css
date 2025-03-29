@@ -1,0 +1,522 @@
+/* Trix Editor and Content Styles for Tailwind Theme */
+
+/* Main container */
+trix-editor {
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-gray-300);
+    padding: calc(var(--spacing) * 3);
+    font-family: var(--default-font-family);
+    color: var(--color-gray-900);
+    background-color: var(--color-white);
+    min-height: calc(var(--spacing) * 32);
+    outline: none;
+    overflow-y: auto;
+    line-height: 1.5;
+    width: 100%;
+    transition-property: border-color, box-shadow;
+    transition-timing-function: var(--default-transition-timing-function);
+    transition-duration: var(--default-transition-duration);
+}
+
+trix-editor:focus {
+    border-color: var(--color-indigo-500);
+    box-shadow: 0 0 0 2px var(--color-indigo-100);
+}
+
+/* Toolbar */
+trix-toolbar {
+    background-color: var(--color-gray-50);
+    border: 1px solid var(--color-gray-300);
+    border-bottom: none;
+    border-top-left-radius: var(--radius-md);
+    border-top-right-radius: var(--radius-md);
+    padding: calc(var(--spacing) * 1) calc(var(--spacing) * 2);
+    display: flex;
+    flex-wrap: wrap;
+    gap: calc(var(--spacing) * 2);
+}
+
+/* Toolbar buttons */
+trix-toolbar .trix-button-row {
+    display: flex;
+}
+
+trix-toolbar .trix-button-group {
+    display: flex;
+    border: 1px solid var(--color-gray-300);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+}
+
+trix-toolbar .trix-button {
+    background-color: var(--color-white);
+    border: none;
+    border-right: 1px solid var(--color-gray-200);
+    color: var(--color-gray-700);
+    padding: calc(var(--spacing) * 1) calc(var(--spacing) * 2);
+    font-size: var(--text-sm);
+    cursor: pointer;
+    transition-property: background-color, color;
+    transition-timing-function: var(--default-transition-timing-function);
+    transition-duration: var(--default-transition-duration);
+}
+
+trix-toolbar .trix-button:last-child {
+    border-right: none;
+}
+
+trix-toolbar .trix-button:hover {
+    background-color: var(--color-gray-100);
+    color: var(--color-gray-900);
+}
+
+trix-toolbar .trix-button.trix-active {
+    background-color: var(--color-indigo-100);
+    color: var(--color-indigo-700);
+}
+
+/* Button icons */
+trix-toolbar .trix-button--icon {
+    width: calc(var(--spacing) * 8);
+    height: calc(var(--spacing) * 8);
+    position: relative;
+    text-indent: -9999px;
+}
+
+trix-toolbar .trix-button--icon::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: calc(var(--spacing) * 4);
+    height: calc(var(--spacing) * 4);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    opacity: 0.7;
+    transition: opacity var(--default-transition-duration) var(--default-transition-timing-function);
+}
+
+trix-toolbar .trix-button--icon:hover::before {
+    opacity: 1;
+}
+
+trix-toolbar .trix-button--icon.trix-active::before {
+    opacity: 1;
+}
+
+/* Specific button icons */
+.trix-button--icon-bold::before {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 4h8a4 4 0 0 1 4 4 4 4 0 0 1-4 4H6z'%3E%3C/path%3E%3Cpath d='M6 12h9a4 4 0 0 1 4 4 4 4 0 0 1-4 4H6z'%3E%3C/path%3E%3C/svg%3E");
+}
+
+.trix-button--icon-italic::before {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cline x1='19' y1='4' x2='10' y2='4'%3E%3C/line%3E%3Cline x1='14' y1='20' x2='5' y2='20'%3E%3C/line%3E%3Cline x1='15' y1='4' x2='9' y2='20'%3E%3C/line%3E%3C/svg%3E");
+}
+
+.trix-button--icon-strike::before {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M16 4H9a3 3 0 0 0-2.83 4'%3E%3C/path%3E%3Cpath d='M14 12a4 4 0 0 1 0 8H6'%3E%3C/path%3E%3Cline x1='4' y1='12' x2='20' y2='12'%3E%3C/line%3E%3C/svg%3E");
+}
+
+.trix-button--icon-link::before {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71'%3E%3C/path%3E%3Cpath d='M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71'%3E%3C/path%3E%3C/svg%3E");
+}
+
+.trix-button--icon-heading-1::before {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 12h8'%3E%3C/path%3E%3Cpath d='M4 18V6'%3E%3C/path%3E%3Cpath d='M12 18V6'%3E%3C/path%3E%3Cpath d='M17 18v-8l4 6v-6'%3E%3C/path%3E%3C/svg%3E");
+}
+
+.trix-button--icon-quote::before {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z'%3E%3C/path%3E%3Cpath d='M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z'%3E%3C/path%3E%3C/svg%3E");
+}
+
+.trix-button--icon-code::before {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='16 18 22 12 16 6'%3E%3C/polyline%3E%3Cpolyline points='8 6 2 12 8 18'%3E%3C/polyline%3E%3C/svg%3E");
+}
+
+.trix-button--icon-bullet-list::before {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cline x1='8' y1='6' x2='21' y2='6'%3E%3C/line%3E%3Cline x1='8' y1='12' x2='21' y2='12'%3E%3C/line%3E%3Cline x1='8' y1='18' x2='21' y2='18'%3E%3C/line%3E%3Cline x1='3' y1='6' x2='3.01' y2='6'%3E%3C/line%3E%3Cline x1='3' y1='12' x2='3.01' y2='12'%3E%3C/line%3E%3Cline x1='3' y1='18' x2='3.01' y2='18'%3E%3C/line%3E%3C/svg%3E");
+}
+
+.trix-button--icon-number-list::before {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cline x1='10' y1='6' x2='21' y2='6'%3E%3C/line%3E%3Cline x1='10' y1='12' x2='21' y2='12'%3E%3C/line%3E%3Cline x1='10' y1='18' x2='21' y2='18'%3E%3C/line%3E%3Cpath d='M4 6h1v4'%3E%3C/path%3E%3Cpath d='M4 10h2'%3E%3C/path%3E%3Cpath d='M6 18H4c0-1 2-2 2-3s-1-1.5-2-1'%3E%3C/path%3E%3C/svg%3E");
+}
+
+.trix-button--icon-undo::before {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 7v6h6'%3E%3C/path%3E%3Cpath d='M21 17a9 9 0 0 0-9-9 9 9 0 0 0-6 2.3L3 13'%3E%3C/path%3E%3C/svg%3E");
+}
+
+.trix-button--icon-redo::before {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M21 7v6h-6'%3E%3C/path%3E%3Cpath d='M3 17a9 9 0 0 1 9-9 9 9 0 0 1 6 2.3l3 2.7'%3E%3C/path%3E%3C/svg%3E");
+}
+
+.trix-button--icon-decrease-nesting-level::before {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cline x1='3' y1='8' x2='21' y2='8'%3E%3C/line%3E%3Cline x1='3' y1='16' x2='21' y2='16'%3E%3C/line%3E%3Cline x1='19' y1='12' x2='7' y2='12'%3E%3C/line%3E%3Cpath d='m7 16-4-4 4-4'%3E%3C/path%3E%3C/svg%3E");
+}
+
+.trix-button--icon-increase-nesting-level::before {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cline x1='3' y1='8' x2='21' y2='8'%3E%3C/line%3E%3Cline x1='3' y1='16' x2='21' y2='16'%3E%3C/line%3E%3Cline x1='12' y1='12' x2='21' y2='12'%3E%3C/line%3E%3Cpath d='m16 8 4 4-4 4'%3E%3C/path%3E%3C/svg%3E");
+}
+
+.trix-button--icon-attach::before {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m21.44 11.05-9.19 9.19a6 6 0 0 1-8.49-8.49l8.57-8.57A4 4 0 1 1 18 8.84l-8.59 8.57a2 2 0 0 1-2.83-2.83l8.49-8.48'%3E%3C/path%3E%3C/svg%3E");
+}
+
+/* Hide specific button groups */
+trix-toolbar .trix-button-group--file-tools {
+    display: none;
+}
+
+trix-toolbar .trix-button-group--history-tools {
+    display: none;
+}
+
+/* Optional: If you want to hide the groups only in specific contexts, use a class */
+.no-file-tools trix-toolbar .trix-button-group--file-tools,
+.no-history-tools trix-toolbar .trix-button-group--history-tools {
+    display: none;
+}
+
+/* Dialog (attachment, href, etc.) */
+trix-toolbar .trix-dialog {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 50;
+    background-color: var(--color-white);
+    border: 1px solid var(--color-gray-300);
+    border-radius: var(--radius-md);
+    box-shadow: var(--tw-shadow);
+    padding: calc(var(--spacing) * 4);
+    margin-top: calc(var(--spacing) * 1);
+}
+
+/* Dialog inputs */
+trix-toolbar .trix-dialog input[type=text],
+trix-toolbar .trix-dialog input[type=url] {
+    width: 100%;
+    border: 1px solid var(--color-gray-300);
+    border-radius: var(--radius-md);
+    padding: calc(var(--spacing) * 2);
+    font-size: var(--text-sm);
+    line-height: calc(var(--spacing) * 5);
+    margin-bottom: calc(var(--spacing) * 2);
+    outline: none;
+}
+
+trix-toolbar .trix-dialog input[type=text]:focus,
+trix-toolbar .trix-dialog input[type=url]:focus {
+    border-color: var(--color-indigo-500);
+    box-shadow: 0 0 0 2px var(--color-indigo-100);
+}
+
+/* Dialog buttons */
+trix-toolbar .trix-dialog .trix-button--dialog {
+    background-color: var(--color-indigo-600);
+    color: var(--color-white);
+    border: none;
+    border-radius: var(--radius-md);
+    padding: calc(var(--spacing) * 2) calc(var(--spacing) * 4);
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-medium);
+    cursor: pointer;
+    transition-property: background-color;
+    transition-timing-function: var(--default-transition-timing-function);
+    transition-duration: var(--default-transition-duration);
+}
+
+trix-toolbar .trix-dialog .trix-button--dialog:hover {
+    background-color: var(--color-indigo-700);
+}
+
+/* Text styling in editor */
+trix-editor h1 {
+    font-size: var(--text-3xl);
+    font-weight: var(--font-weight-bold);
+    margin-bottom: calc(var(--spacing) * 4);
+    color: var(--color-gray-900);
+}
+
+trix-editor h2 {
+    font-size: var(--text-2xl);
+    font-weight: var(--font-weight-bold);
+    margin-bottom: calc(var(--spacing) * 3);
+    color: var(--color-gray-900);
+}
+
+trix-editor h3 {
+    font-size: var(--text-xl);
+    font-weight: var(--font-weight-semibold);
+    margin-bottom: calc(var(--spacing) * 2);
+    color: var(--color-gray-900);
+}
+
+trix-editor p {
+    margin-bottom: calc(var(--spacing) * 3);
+}
+
+trix-editor a {
+    color: var(--color-indigo-600);
+    text-decoration: underline;
+}
+
+trix-editor a:hover {
+    color: var(--color-indigo-800);
+}
+
+trix-editor ul, trix-editor ol {
+    padding-left: calc(var(--spacing) * 6);
+    margin-bottom: calc(var(--spacing) * 3);
+}
+
+trix-editor ul {
+    list-style-type: disc;
+}
+
+trix-editor ol {
+    list-style-type: decimal;
+}
+
+trix-editor li {
+    margin-bottom: calc(var(--spacing) * 1);
+}
+
+trix-editor blockquote {
+    border-left: 4px solid var(--color-gray-300);
+    padding-left: calc(var(--spacing) * 4);
+    color: var(--color-gray-700);
+    font-style: italic;
+    margin: calc(var(--spacing) * 3) 0;
+}
+
+trix-editor code {
+    font-family: var(--default-mono-font-family);
+    background-color: var(--color-gray-100);
+    padding: calc(var(--spacing) * 0.5) calc(var(--spacing) * 1);
+    border-radius: var(--radius-md);
+    font-size: var(--text-sm);
+}
+
+trix-editor pre {
+    font-family: var(--default-mono-font-family);
+    background-color: var(--color-gray-100);
+    padding: calc(var(--spacing) * 3);
+    border-radius: var(--radius-md);
+    margin: calc(var(--spacing) * 3) 0;
+    overflow-x: auto;
+    font-size: var(--text-sm);
+    line-height: 1.5;
+}
+
+/* Attachment/Figure styling */
+trix-editor figure {
+    margin: calc(var(--spacing) * 3) 0;
+}
+
+trix-editor figcaption {
+    font-size: var(--text-sm);
+    color: var(--color-gray-600);
+    text-align: center;
+    margin-top: calc(var(--spacing) * 1);
+}
+
+trix-editor .attachment {
+    display: inline-block;
+    position: relative;
+    max-width: 100%;
+}
+
+trix-editor .attachment--preview {
+    text-align: center;
+}
+
+trix-editor .attachment__caption {
+    font-size: var(--text-sm);
+    color: var(--color-gray-600);
+    text-align: center;
+    margin-top: calc(var(--spacing) * 1);
+}
+
+/* Progress bar */
+trix-editor .attachment__progress {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background-color: var(--color-gray-200);
+}
+
+trix-editor .attachment__progress-bar {
+    height: 100%;
+    background-color: var(--color-indigo-500);
+}
+
+/* Placeholder text */
+trix-editor:empty:not(:focus)::before {
+    content: attr(placeholder);
+    color: var(--color-gray-400);
+}
+
+/* Mobile responsive adjustments */
+@media (max-width: 40rem) {
+    trix-toolbar {
+        flex-direction: column;
+        gap: calc(var(--spacing) * 1);
+    }
+
+    trix-toolbar .trix-button-group {
+        width: 100%;
+    }
+
+    trix-toolbar .trix-button {
+        flex: 1;
+    }
+}
+
+/* Trix Content (for displaying rich text) */
+.trix-content {
+    font-family: var(--default-font-family);
+    color: var(--color-gray-900);
+    line-height: 1.5;
+    width: 100%;
+    border-bottom: 1px solid var(--color-gray-300);
+    padding: var(--spacing);
+}
+
+/* Text styling in trix-content */
+.trix-content h1 {
+    font-size: var(--text-3xl);
+    font-weight: var(--font-weight-bold);
+    margin-bottom: calc(var(--spacing) * 4);
+    color: var(--color-gray-900);
+}
+
+.trix-content h2 {
+    font-size: var(--text-2xl);
+    font-weight: var(--font-weight-bold);
+    margin-bottom: calc(var(--spacing) * 3);
+    color: var(--color-gray-900);
+}
+
+.trix-content h3 {
+    font-size: var(--text-xl);
+    font-weight: var(--font-weight-semibold);
+    margin-bottom: calc(var(--spacing) * 2);
+    color: var(--color-gray-900);
+}
+
+.trix-content p {
+    margin-bottom: calc(var(--spacing) * 3);
+}
+
+.trix-content a {
+    color: var(--color-indigo-600);
+    text-decoration: underline;
+}
+
+.trix-content a:hover {
+    color: var(--color-indigo-800);
+}
+
+.trix-content ul, .trix-content ol {
+    padding-left: calc(var(--spacing) * 6);
+    margin-bottom: calc(var(--spacing) * 3);
+}
+
+.trix-content ul {
+    list-style-type: disc;
+}
+
+.trix-content ol {
+    list-style-type: decimal;
+}
+
+.trix-content li {
+    margin-bottom: calc(var(--spacing) * 1);
+}
+
+.trix-content blockquote {
+    border-left: 4px solid var(--color-gray-300);
+    padding-left: calc(var(--spacing) * 4);
+    color: var(--color-gray-700);
+    font-style: italic;
+    margin: calc(var(--spacing) * 3) 0;
+}
+
+.trix-content code {
+    font-family: var(--default-mono-font-family);
+    background-color: var(--color-gray-100);
+    padding: calc(var(--spacing) * 0.5) calc(var(--spacing) * 1);
+    border-radius: var(--radius-md);
+    font-size: var(--text-sm);
+}
+
+.trix-content pre {
+    font-family: var(--default-mono-font-family);
+    background-color: var(--color-gray-100);
+    padding: calc(var(--spacing) * 3);
+    border-radius: var(--radius-md);
+    margin: calc(var(--spacing) * 3) 0;
+    overflow-x: auto;
+    font-size: var(--text-sm);
+    line-height: 1.5;
+}
+
+/* Attachment/Figure styling in trix-content */
+.trix-content figure {
+    margin: calc(var(--spacing) * 3) 0;
+}
+
+.trix-content figcaption {
+    font-size: var(--text-sm);
+    color: var(--color-gray-600);
+    text-align: center;
+    margin-top: calc(var(--spacing) * 1);
+}
+
+.trix-content .attachment {
+    display: inline-block;
+    position: relative;
+    max-width: 100%;
+}
+
+.trix-content .attachment--preview {
+    text-align: center;
+}
+
+.trix-content .attachment__caption {
+    font-size: var(--text-sm);
+    color: var(--color-gray-600);
+    text-align: center;
+    margin-top: calc(var(--spacing) * 1);
+}
+
+/* Tables in trix-content */
+.trix-content table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: calc(var(--spacing) * 3) 0;
+}
+
+.trix-content th {
+    border: 1px solid var(--color-gray-300);
+    padding: calc(var(--spacing) * 2);
+    background-color: var(--color-gray-100);
+    font-weight: var(--font-weight-semibold);
+    text-align: left;
+}
+
+.trix-content td {
+    border: 1px solid var(--color-gray-300);
+    padding: calc(var(--spacing) * 2);
+}
+
+/* Content dividers */
+.trix-content hr {
+    border: 0;
+    border-top: 1px solid var(--color-gray-300);
+    margin: calc(var(--spacing) * 6) 0;
+}
