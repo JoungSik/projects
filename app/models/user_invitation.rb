@@ -9,13 +9,17 @@ class UserInvitation < ApplicationRecord
 
   validate :invitee_email_not_already_registered, on: :create
 
-  before_validation :generate_token, :set_invited_at_if_blank, :set_expiry, on: :create
+  before_validation :set_invited_at_if_blank, :set_expiry, on: :create
+
+  before_save :generate_token, unless: :accepted?
+  
+  after_commit :send_invite_email
 
   EXPIRY = 7.days
 
-  # def expired?
-  #   expires_at.present? && expires_at < Time.zone.now
-  # end
+  def expired?
+    pending? && expires_at.present? && expires_at < Time.zone.now
+  end
 
   private
 
@@ -26,7 +30,7 @@ class UserInvitation < ApplicationRecord
   end
 
   def generate_token
-    self.token ||= SecureRandom.hex(16)
+    self.token = SecureRandom.hex(16)
   end
 
   def set_invited_at_if_blank
@@ -35,5 +39,9 @@ class UserInvitation < ApplicationRecord
 
   def set_expiry
     self.expires_at ||= EXPIRY.from_now
+  end
+
+  def send_invite_email
+    InvitationMailer.invite(self).deliver_now if pending?
   end
 end

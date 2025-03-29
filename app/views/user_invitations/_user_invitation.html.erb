@@ -6,23 +6,31 @@
     <div class="text-sm text-gray-500"><%= user_invitation.invited_at.try(:strftime, "%Y.%m.%d") %></div>
   </td>
   <td class="px-6 py-4 whitespace-nowrap">
-    <div data-controller="duedate"
-         data-duedate-target="container"
-         data-duedate-start-at-value="<%= Time.zone.now.try(:strftime, "%Y.%m.%d") %>"
-         data-duedate-end-at-value="<%= user_invitation.expires_at.try(:strftime, "%Y.%m.%d") %>"
-         class="text-sm">
-      <span data-duedate-target="remainingDays"></span>
-    </div>
+    <% if user_invitation.accepted? %>
+      <div class="text-sm text-gray-500">-</div>
+    <% else %>
+      <div data-controller="duedate"
+           data-duedate-target="container"
+           data-duedate-start-at-value="<%= Time.zone.now.try(:strftime, "%Y.%m.%d") %>"
+           data-duedate-end-at-value="<%= user_invitation.expires_at.try(:strftime, "%Y.%m.%d") %>"
+           class="text-sm">
+        <span data-duedate-target="remainingDays"></span>
+      </div>
+    <% end %>
   </td>
   <td class="px-6 py-4 whitespace-nowrap">
     <span class="<%= "px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-#{user_invitation_status_color(user_invitation)}-100 text-#{user_invitation_status_color(user_invitation)}-800" %>">
       <%= t("activerecord.attributes.user_invitation.status.#{user_invitation.status}") %>
     </span>
   </td>
-  <!--  <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">-->
-  <!--    <div class="flex items-center justify-end space-x-3">-->
-  <!--      <button class="text-indigo-600 hover:text-indigo-900"><%#= t("user_invitations.buttons.resend") %></button>-->
-  <%#= button_to t("user_invitations.buttons.destroy"), user_invitation, method: :delete, class: "text-red-600 hover:text-red-900", data: { turbo_confirm: "Are you sure?" } %>
-  <!--    </div>-->
-  <!--  </td>-->
+  <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+    <div class="flex items-center justify-end space-x-3">
+      <% if user_invitation.expired? %>
+        <%= button_to t("user_invitations.buttons.resend"),
+                      user_invitation_path(user_invitation), method: :patch,
+                      params: { user_invitation: { status: :pending, invited_at: Time.zone.now, expires_at: UserInvitation::EXPIRY.from_now } },
+                      class: "text-indigo-600 hover:text-indigo-900" %>
+      <% end %>
+    </div>
+  </td>
 </tr>

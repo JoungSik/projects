@@ -16,7 +16,6 @@ class UserInvitationsController < ApplicationController
   def create
     @user_invitation = UserInvitation.new(user_invitation_params)
     if @user_invitation.save
-      InvitationMailer.invite(@user_invitation).deliver_now
       redirect_to user_invitations_path, notice: t("user_invitations.messages.created")
     else
       render :new, status: :unprocessable_entity
