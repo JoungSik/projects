@@ -157,6 +157,13 @@ ko:
     description:
       label: "설명"
       placeholder: "설명을 입력하세요"
+    tab:
+      title: "보관된 작업"
+      active: "진행중인 작업"
+      archived:
+        title: "보관됨"
+        section:
+          blank: "작업이 없습니다"
     buttons:
       create: "프로젝트 생성"
     messages:

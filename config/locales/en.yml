@@ -186,6 +186,13 @@ en:
     description:
       label: "Description"
       placeholder: "Enter description"
+    tab:
+      title: "Archived Tasks"
+      active: "Active Tasks"
+      archived:
+        title: "Archived"
+        section:
+          blank: "No tasks"
     buttons:
       create: "Create Project"
     messages:
