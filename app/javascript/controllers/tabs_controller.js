@@ -6,7 +6,7 @@ export default class extends Controller {
 
   connect() {
     if (this.tabTargets.length > 0) {
-      this.activate(this.tabTargets[1])
+      this.activate(this.tabTargets[0])
     }
   }
 
