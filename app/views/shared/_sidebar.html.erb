@@ -14,7 +14,7 @@
     </div>
     <div class="space-y-2">
       <% @workspaces.each do |workspace| %>
-        <%= link_to workspace, class: "block w-full text-left px-3 py-2 rounded-lg hover:bg-indigo-50 text-indigo-700 #{current_page?(workspace) ? "bg-indigo-50" : ""}" do %>
+        <%= link_to workspace, class: "block w-full text-left px-3 py-2 rounded-lg hover:bg-indigo-50 hover:text-indigo-700 #{sidebar_color(workspace.id, @workspace.try(:id))}" do %>
           <%= lucide_icon "briefcase", class: "w-4 h-4 inline-block mr-2" %>
           <%= workspace.name %>
         <% end %>
