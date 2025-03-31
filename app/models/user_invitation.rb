@@ -10,9 +10,8 @@ class UserInvitation < ApplicationRecord
   validate :invitee_email_not_already_registered, on: :create
 
   before_validation :set_invited_at_if_blank, :set_expiry, on: :create
+  before_validation :generate_token, unless: :accepted?
 
-  before_save :generate_token, unless: :accepted?
-  
   after_commit :send_invite_email
 
   EXPIRY = 7.days
