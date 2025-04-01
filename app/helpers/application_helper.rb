@@ -1,4 +1,15 @@
 module ApplicationHelper
+
+  def smart_back_link(index_path = nil)
+    referer = request.referer.to_s
+
+    if controller_name == "tasks" && action_name == "show" && referer.include?("/edit")
+      index_path
+    else
+      :back
+    end
+  end
+
   def options_for_enum(model_class, enum)
     enum_hash = model_class.send(enum.to_s.pluralize)
 

@@ -50,7 +50,12 @@ ko:
           due_today: "오늘 마감 (%{count})"
           due_this_week: "이번 주 마감 (%{count})"
           blank:
-            description: "오늘 마감 예정인 작업이 없습니다."
+            overdue:
+              description: "기한 초과된 작업이 없습니다."
+            due_today:
+              description: "오늘 마감 예정인 작업이 없습니다."
+            due_this_week:
+              description: "이번 주 마감 예정인 작업이 없습니다."
         blank:
           title: "작업이 없어요"
           description: "첫 작업을 생성해서 시작하세요"

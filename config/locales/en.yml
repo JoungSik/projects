@@ -54,7 +54,12 @@ en:
           due_today: "Due Today (%{count})"
           due_this_week: "Due This Week (%{count})"
           blank:
-            description: "There are no tasks due today."
+            overdue:
+              description: "No overdue tasks"
+            due_today:
+              description: "No tasks due today"
+            due_this_week:
+              description: "No tasks due this week"
         blank:
           title: "No Tasks Yet"
           description: "Get started by creating your first task"
