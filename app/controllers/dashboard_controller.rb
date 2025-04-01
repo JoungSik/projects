@@ -6,6 +6,7 @@ class DashboardController < ApplicationController
 
     @tasks_by_due_status = Task.includes(:project).where(assign_user: @current_user, end_at: ..Date.today.end_of_week)
                                .where.not(status: [ :completed, :cancelled ])
+                               .order(priority: :asc, end_at: :asc)
                                .each_with_object({ due_today: [], due_this_week: [], overdue: [] }) do |task, hash|
       case task.end_at
       when ...Date.today.beginning_of_week then hash[:overdue] << task
