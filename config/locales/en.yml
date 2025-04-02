@@ -301,6 +301,8 @@ en:
           expired: "Expired"
     errors:
       models:
+        user:
+          blank: "Please enter your name"
         user_invitation:
           attributes:
             base:

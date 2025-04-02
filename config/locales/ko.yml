@@ -272,6 +272,8 @@ ko:
           expired: "만료됨"
     errors:
       models:
+        user:
+          blank: "을(를) 입력해 주세요"
         user_invitation:
           attributes:
             base:
