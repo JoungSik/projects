@@ -39,7 +39,7 @@
               class="px-3 py-4 text-sm font-medium text-gray-500 border-b-2 border-transparent hover:border-gray-300">
         <%= t("projects.tab.archived.title") %>
         <span class="ml-2 px-2 py-0.5 text-xs bg-gray-100 text-gray-600 rounded-full">
-          <%= @archived_tasks.values.sum %>
+          <%= @archived_tasks.values.flatten.count %>
         </span>
       </button>
     </nav>
