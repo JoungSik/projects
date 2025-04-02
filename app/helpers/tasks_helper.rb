@@ -1,5 +1,4 @@
 module TasksHelper
-
   # class="bg-purple-100 text-purple-700"
   # class="bg-blue-100 text-blue-700"
   # class="bg-red-100 text-red-700""

@@ -1,15 +1,15 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  title: MyString
-  description: MyText
+  title: "Project 1"
+  description: "Test Project 1"
   workspace: one
   owner: one
   creator: one
 
 two:
-  title: MyString
-  description: MyText
-  workspace: two
+  title: "Project 2"
+  description: "Test Project 2"
+  workspace: one
   owner: two
   creator: two

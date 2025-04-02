@@ -2,10 +2,10 @@
 
 one:
   user: one
-  workspace: one
-  role: 0
+  ip_address: "127.0.0.1"
+  user_agent: "Mozilla/5.0"
 
 two:
   user: two
-  workspace: one
-  role: 1
+  ip_address: "127.0.0.1"
+  user_agent: "Chrome/90.0.4430.93" 

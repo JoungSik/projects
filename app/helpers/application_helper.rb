@@ -1,5 +1,4 @@
 module ApplicationHelper
-
   def smart_back_link(index_path = nil)
     referer = request.referer.to_s
 

@@ -10,5 +10,5 @@ class User < ApplicationRecord
 
   normalizes :email, with: ->(e) { e.strip.downcase }
 
-  validates_presence_of :name
+  validates_presence_of :name, :email
 end

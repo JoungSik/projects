@@ -1,5 +1,4 @@
 module WorkspacesHelper
-
   # class="bg-indigo-50 text-indigo-700"
   # class="bg-gray-50 text-gray-700"
   def workspace_role_color(workspace_user)
