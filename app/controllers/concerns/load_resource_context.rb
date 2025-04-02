@@ -33,5 +33,4 @@ module LoadResourceContext
   def task_id_from_params
     params[:id]
   end
-
 end
