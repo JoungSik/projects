@@ -265,6 +265,7 @@ ko:
           overdue: "기한 초과"
           completed: "완료"
           cancelled: "취소"
+          archived: "보관"
       user_invitation:
         status:
           pending: "대기중"
