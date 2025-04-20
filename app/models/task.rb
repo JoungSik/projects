@@ -12,7 +12,7 @@ class Task < ApplicationRecord
 
   enum :type, { planning: 0, feature: 1, issue: 2 }, default: :feature
   enum :priority, { critical: 0, high: 1, medium: 2, low: 3, trivial: 4 }, default: :trivial
-  enum :status, { not_started: 0, in_progress: 1, overdue: 2, completed: 3, cancelled: 4 }, default: :not_started
+  enum :status, { not_started: 0, in_progress: 1, overdue: 2, completed: 3, cancelled: 4, archived: 5 }, default: :not_started
 
   TYPE_DEFAULT = types[:feature]
   PRIORITY_DEFAULT = priorities[:trivial]
@@ -21,6 +21,10 @@ class Task < ApplicationRecord
   before_validation :set_end_at_if_blank, :mark_as_overdue_if_needed
 
   scope :ongoing, -> { where(status: [ :not_started, :in_progress, :overdue ]) }
+
+  def self.visible_statuses
+    statuses.except(:archived)
+  end
 
   private
 

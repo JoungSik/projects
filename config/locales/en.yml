@@ -294,6 +294,7 @@ en:
           overdue: "Overdue"
           completed: "Completed"
           cancelled: "Cancelled"
+          archived: "Archived"
       user_invitation:
         status:
           pending: "Pending"
