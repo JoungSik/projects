@@ -5,7 +5,7 @@ class DashboardController < ApplicationController
     @tasks_by_status_count[:total] = @tasks_by_status_count.values.sum
 
     @tasks_by_due_status = Task.includes(:project, project: :workspace).where(assign_user: @current_user, end_at: ..Date.today.end_of_week)
-                               .where.not(status: [ :completed, :cancelled ])
+                               .where.not(status: [ :completed, :cancelled, :archived ])
                                .order(priority: :asc, end_at: :asc)
                                .each_with_object({ due_today: [], due_this_week: [], overdue: [] }) do |task, hash|
       case task.end_at
