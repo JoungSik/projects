@@ -1,5 +1,4 @@
 module DashboardHelper
-
   def combined_status_percentage(target_statuses, task_counts)
     return 0.0 if task_counts[:total].zero?
 
