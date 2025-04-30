@@ -1,0 +1,107 @@
+name: Update PR Description with Commits (Generic, Exclude Dependabot, Fix Fetch)
+
+on:
+  pull_request:
+    types:
+      - opened
+      - reopened
+      - synchronize
+
+jobs:
+  add_commits_to_description:
+    runs-on: ubuntu-latest
+
+    # Dependabot이 만든 PR인 경우 이 Job을 건너뜁니다.
+    if: github.actor != 'dependabot[bot]'
+
+    permissions:
+      pull-requests: write # PR 설명을 수정할 수 있는 권한 필요
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          # PR의 소스 브랜치 코드를 가져옵니다.
+          # fetch-depth: 0을 사용하여 전체 히스토리를 가져오는 것이 가장 안전하지만,
+          # 상황에 따라서는 타겟 브랜치 히스토리만 별도로 fetch해야 할 수도 있습니다.
+          # 여기서는 전체 히스토리를 가져오도록 설정합니다.
+          fetch-depth: 0
+
+      # PR의 타겟 브랜치(Base Branch) 히스토리를 명시적으로 가져오는 스텝 추가
+      # actions/checkout@v4 with fetch-depth: 0 이 충분할 수 있지만,
+      # PR이 포크에서 오는 경우 등을 위해 이 스텝을 추가하면 더 안정적입니다.
+      - name: Fetch target branch history
+        run: git fetch origin ${{ github.event.pull_request.base.ref }}:${{ github.event.pull_request.base.ref }}
+
+      - name: Get source and target branch names
+        id: get_branches
+        run: |
+          echo "SOURCE_BRANCH=${{ github.event.pull_request.head.ref }}" >> $GITHUB_OUTPUT
+          echo "TARGET_BRANCH=${{ github.event.pull_request.base.ref }}" >> $GITHUB_OUTPUT
+          echo "DEBUG_MESSAGE=Comparing ${{ github.event.pull_request.base.ref }}..${{ github.event.pull_request.head.ref }}" >> $GITHUB_OUTPUT # 디버깅용 로그
+
+      - name: Get commit list between branches (using merge-base)
+        id: get_commits
+        shell: bash # 스크립트 실행을 위해 bash 쉘 명시
+        run: |
+          SOURCE_BRANCH=${{ steps.get_branches.outputs.SOURCE_BRANCH }}
+          TARGET_BRANCH=${{ steps.get_branches.outputs.TARGET_BRANCH }}
+          
+          echo "Comparing $TARGET_BRANCH...$SOURCE_BRANCH using merge-base" # 디버깅용 로그
+          
+          # PR의 타겟 브랜치(origin/$TARGET_BRANCH)와 현재 HEAD(PR 소스 브랜치)의 공통 조상 커밋을 찾습니다.
+          # PR이 포크에서 왔다면 $TARGET_BRANCH는 원본 저장소의 브랜치이고, HEAD는 포크의 브랜치입니다.
+          # git merge-base 명령은 이 둘의 공통 분기점을 정확히 찾아줍니다.
+          MERGE_BASE=$(git merge-base "origin/$TARGET_BRANCH" HEAD)
+          
+          # merge-base를 찾지 못한 경우 에러 처리
+          if [ -z "$MERGE_BASE" ]; then
+            echo "Error: Could not determine merge base between origin/$TARGET_BRANCH and HEAD. This might indicate an issue with fetching history or unusual branch state."
+            # 공통 조상을 못 찾으면 커밋 목록을 만들 수 없으므로, 여기서 Job을 실패시키는 것이 타당합니다.
+            exit 1
+          fi
+          
+          echo "Merge base found: $MERGE_BASE" # 디버깅용 로그
+          
+          # merge-base 커밋부터 현재 HEAD(PR 소스 브랜치)까지의 커밋 목록을 가져옵니다.
+          # --no-merges 플래그는 머지 커밋을 제외합니다 (원하는 경우 추가).
+          # git log MERGE_BASE...HEAD 는 MERGE_BASE에는 포함되지 않고 HEAD에는 포함되는 커밋들을 찾습니다.
+          COMMITS=$(git log "$MERGE_BASE"...HEAD --pretty=format:"- %s" --no-merges)
+          
+          # 가져온 커밋 목록이 비어있는지 확인
+          if [ -z "$COMMITS" ]; then
+            echo "No unique commits found between merge base ($MERGE_BASE) and HEAD ($SOURCE_BRANCH) (or only merge commits)."
+            echo "commits_b64=" >> $GITHUB_OUTPUT # 커밋이 없으면 빈 값 출력
+          else
+            echo "Found commits:" # 디버깅용 로그
+            echo "$COMMITS" # 디버깅용 로그 (실제 PR에는 인코딩된 값이 들어갑니다)
+            echo "commits_b64=$(echo "$COMMITS" | base64 -w 0)" >> $GITHUB_OUTPUT
+          fi
+
+
+      - name: Add commits to PR description (using gh CLI)
+        # 이전 스텝에서 커밋 목록이 성공적으로 가져와졌을 때만 실행
+        if: steps.get_commits.outputs.commits_b64 != ''
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }} # GitHub 기본 제공 토큰
+        run: |
+          # base64로 인코딩된 커밋 목록 디코딩
+          COMMITS=$(echo "${{ steps.get_commits.outputs.commits_b64 }}" | base64 -d)
+          PR_NUMBER=${{ github.event.pull_request.number }}
+
+          # 현재 PR 설명 가져오기 (비어있을 경우 대비)
+          PR_BODY=$(gh pr view $PR_NUMBER --json body --jq .body || echo "")
+
+          SEPARATOR="### 포함된 커밋 목록"
+          # 기존 PR 내용에서 구분자 '### 포함된 커밋 목록' 이후의 내용을 제거하고 가져옴
+          # awk를 사용하여 구분자 줄 전까지만 출력하고, sed로 뒤따르는 빈 줄 제거
+          EXISTING_BODY=$(echo -e "$PR_BODY" | awk -v sep="$SEPARATOR" '{ if ($0 == sep) { exit } print }' | sed '/^[[:space:]]*$/d')
+
+          # 새로운 PR 설명 생성: 기존 내용 + 빈 줄 + 구분자 + 빈 줄 + 커밋 목록
+          NEW_BODY="$EXISTING_BODY\n\n$SEPARATOR\n$COMMITS"
+
+          echo "Updating PR #$PR_NUMBER description..."
+          # gh CLI의 --body-file 옵션을 사용하여 파일에서 내용을 읽어 PR 설명 업데이트
+          # 이 방식이 multi-line 문자열 처리에 더 안정적입니다.
+          echo -e "$NEW_BODY" > /tmp/pr_body.txt
+          gh pr edit $PR_NUMBER --body-file /tmp/pr_body.txt
