@@ -1,7 +1,7 @@
 class DashboardController < ApplicationController
   def index
-    @tasks_by_status_count = Task.statuses.keys.map(&:to_sym).index_with { 0 }
-                                 .merge(Task.where(assign_user: @current_user).group(:status).count.symbolize_keys)
+    @tasks_by_status_count = Task.where(assign_user: @current_user).where.not(status: :archived)
+                                 .group(:status).count.symbolize_keys
     @tasks_by_status_count[:total] = @tasks_by_status_count.values.sum
 
     @tasks_by_due_status = Task.includes(:project, project: :workspace).where(assign_user: @current_user, end_at: ..Date.today.end_of_week)

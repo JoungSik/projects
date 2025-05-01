@@ -44,7 +44,7 @@ module TasksHelper
     when 2 then "alert-circle"
     when 3 then "check-circle"
     when 4 then "x-circle"
-    else "loader"
+    else "archive-restore"
     end
   end
 
