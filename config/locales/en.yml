@@ -313,6 +313,7 @@ en:
     buttons:
       save: "Save"
       cancel: "Cancel"
+      delete: "Delete"
       my_profile: "My Profile"
       invitation: "Invite"
       forgot_password: "Forgot your password?"
