@@ -284,6 +284,7 @@ ko:
     buttons:
       save: "저장"
       cancel: "취소"
+      delete: "삭제"
       my_profile: "내정보"
       invitation: "초대"
       forgot_password: "비밀번호를 잊으셨나요?"
