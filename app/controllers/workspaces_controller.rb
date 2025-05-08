@@ -11,7 +11,17 @@ class WorkspacesController < ApplicationController
 
   # GET /workspaces/new
   def new
-    @workspace = Workspace.new
+    respond_to do |format|
+      format.turbo_stream do
+        render turbo_stream: turbo_stream.update("modal",
+                                                 partial: "shared/modal",
+                                                 locals: {
+                                                   title: "새 작업공간",
+                                                   modal_body_partial: "workspaces/form",
+                                                   modal_body_locals: { workspace: Workspace.new }
+                                                 })
+      end
+    end
   end
 
   # GET /workspaces/1/edit
@@ -25,7 +35,15 @@ class WorkspacesController < ApplicationController
     if @workspace.save
       redirect_to @workspace, notice: t(".messages.created")
     else
-      render :new, status: :unprocessable_entity
+      respond_to do |format|
+        format.html { render :new, status: :unprocessable_entity }
+        format.turbo_stream do
+          render turbo_stream: turbo_stream.update("modal",
+                                                   partial: "workspaces/form",
+                                                   locals: { workspace: @workspace }),
+                 status: :unprocessable_entity
+        end
+      end
     end
   end
 

@@ -1,0 +1,31 @@
+<%
+  required_locals = [ :title, :modal_body_partial ]
+  missing_locals = required_locals.select { |local| !local_assigns.key?(local) }
+
+  if missing_locals.any?
+    raise ArgumentError, "Error rendering shared/_modal.html.erb: Missing required locals: #{missing_locals.join(', ')}"
+  end
+  modal_body_locals = local_assigns.key?(:modal_body_locals) ? modal_body_locals : {}
+%>
+
+<div id="modal" class="fixed inset-0 z-50 overflow-auto flex" data-controller="modal">
+
+  <div class="fixed inset-0 bg-black/75" data-action="click->modal#close"></div>
+
+  <div id="content" class="relative p-8 bg-white w-full max-w-md m-auto rounded-lg shadow-lg" data-modal-target="content">
+    <div class="flex justify-between items-center mb-4">
+      <h3 class="text-lg font-semibold"><%= title %></h3>
+      <button type="button"
+              class="text-gray-500 hover:text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 rounded-md cursor-pointer"
+              data-action="click->modal#close"
+              aria-label="닫기">
+        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+      </button>
+    </div>
+    <div class="modal-body">
+      <%= render partial: modal_body_partial, locals: modal_body_locals %>
+    </div>
+  </div>
+</div>
