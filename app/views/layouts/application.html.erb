@@ -44,5 +44,7 @@
     <main class="pt-24 px-4 md:px-6 pb-8 <%= authenticated? ? "md:ml-64" : "" %>">
       <%= yield %>
     </main>
+
+    <%= turbo_frame_tag "modal" %>
   </body>
 </html>
