@@ -244,6 +244,8 @@ ko:
 
   activerecord:
     attributes:
+      workspace:
+        name: "이름"
       workspace_user:
         role:
           0: "관리자"
@@ -277,6 +279,8 @@ ko:
           attributes:
             base:
               email_un_invitable: "이 이메일은 초대할 수 없습니다"
+      messages:
+        blank: "항목이 누락되어 있습니다."
 
   shared:
     confirm:

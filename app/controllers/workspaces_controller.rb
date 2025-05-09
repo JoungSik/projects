@@ -26,6 +26,17 @@ class WorkspacesController < ApplicationController
 
   # GET /workspaces/1/edit
   def edit
+    respond_to do |format|
+      format.turbo_stream do
+        render turbo_stream: turbo_stream.update("modal",
+                                                 partial: "shared/modal",
+                                                 locals: {
+                                                   title: "작업공간 수정",
+                                                   modal_body_partial: "workspaces/form",
+                                                   modal_body_locals: { workspace: @workspace }
+                                                 })
+      end
+    end
   end
 
   # POST /workspaces
@@ -39,8 +50,12 @@ class WorkspacesController < ApplicationController
         format.html { render :new, status: :unprocessable_entity }
         format.turbo_stream do
           render turbo_stream: turbo_stream.update("modal",
-                                                   partial: "workspaces/form",
-                                                   locals: { workspace: @workspace }),
+                                                   partial: "shared/modal",
+                                                   locals: {
+                                                     title: "새 작업공간",
+                                                     modal_body_partial: "workspaces/form",
+                                                     modal_body_locals: { workspace: @workspace }
+                                                   }),
                  status: :unprocessable_entity
         end
       end
@@ -52,7 +67,20 @@ class WorkspacesController < ApplicationController
     if @workspace.update(workspace_params)
       redirect_to @workspace, notice: t(".messages.updated"), status: :see_other
     else
-      render :edit, status: :unprocessable_entity
+      p @workspace.errors.full_messages
+      respond_to do |format|
+        format.html { render :edit, status: :unprocessable_entity }
+        format.turbo_stream do
+          render turbo_stream: turbo_stream.update("modal",
+                                                   partial: "shared/modal",
+                                                   locals: {
+                                                     title: "작업공간 수정",
+                                                     modal_body_partial: "workspaces/form",
+                                                     modal_body_locals: { workspace: @workspace }
+                                                   }),
+                 status: :unprocessable_entity
+        end
+      end
     end
   end
 
