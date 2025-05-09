@@ -67,7 +67,6 @@ class WorkspacesController < ApplicationController
     if @workspace.update(workspace_params)
       redirect_to @workspace, notice: t(".messages.updated"), status: :see_other
     else
-      p @workspace.errors.full_messages
       respond_to do |format|
         format.html { render :edit, status: :unprocessable_entity }
         format.turbo_stream do
