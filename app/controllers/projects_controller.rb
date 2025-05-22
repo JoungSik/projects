@@ -50,11 +50,22 @@ class ProjectsController < ApplicationController
   # POST /projects
   def create
     @project = Project.new(project_params)
-
     if @project.save
       redirect_to workspace_path(@workspace), notice: t(".messages.created")
     else
-      render :new, status: :unprocessable_entity
+      respond_to do |format|
+        format.html { render :new, status: :unprocessable_entity }
+        format.turbo_stream do
+          render turbo_stream: turbo_stream.update("modal",
+                                                   partial: "shared/modal",
+                                                   locals: {
+                                                     title: "새 프로젝트",
+                                                     modal_body_partial: "projects/form",
+                                                     modal_body_locals: { project: @project }
+                                                   }),
+                 status: :unprocessable_entity
+        end
+      end
     end
   end
 
@@ -63,7 +74,19 @@ class ProjectsController < ApplicationController
     if @project.update(project_params)
       redirect_to workspace_project_path(@workspace, @project), notice: t(".messages.updated"), status: :see_other
     else
-      render :edit, status: :unprocessable_entity
+      respond_to do |format|
+        format.html { render :edit, status: :unprocessable_entity }
+        format.turbo_stream do
+          render turbo_stream: turbo_stream.update("modal",
+                                                   partial: "shared/modal",
+                                                   locals: {
+                                                     title: "프로젝트 수정",
+                                                     modal_body_partial: "projects/form",
+                                                     modal_body_locals: { project: @project }
+                                                   }),
+                 status: :unprocessable_entity
+        end
+      end
     end
   end
 

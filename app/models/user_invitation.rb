@@ -3,7 +3,7 @@ class UserInvitation < ApplicationRecord
   belongs_to :invitee, foreign_key: :invitee_id, class_name: "User", optional: true
 
   validates :token, presence: true, uniqueness: true
-  validates_presence_of :invitee_email
+  validates :invitee_email, presence: true, uniqueness: true
 
   enum :status, { pending: 0, accepted: 1, expired: 2 }, default: :pending
 
