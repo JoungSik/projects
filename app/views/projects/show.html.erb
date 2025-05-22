@@ -65,6 +65,7 @@
 </div>
 
 <%= link_to new_workspace_project_task_path(@workspace, @project),
-            class: "fixed bottom-6 right-6 w-14 h-14 bg-indigo-600 rounded-full shadow-lg flex items-center justify-center text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 z-50" do %>
+            class: "fixed bottom-6 right-6 w-14 h-14 bg-indigo-600 rounded-full shadow-lg flex items-center justify-center text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 z-50",
+            data: { turbo_stream: true } do %>
   <%= lucide_icon "plus", class: "w-6 h-6" %>
 <% end %>
