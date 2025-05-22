@@ -19,11 +19,32 @@ class ProjectsController < ApplicationController
 
   # GET /projects/new
   def new
-    @project = Project.new
+    respond_to do |format|
+      format.turbo_stream do
+        render turbo_stream: turbo_stream.update("modal",
+                                                 partial: "shared/modal",
+                                                 locals: {
+                                                   title: "새 프로젝트",
+                                                   modal_body_partial: "projects/form",
+                                                   modal_body_locals: { project: Project.new }
+                                                 })
+      end
+    end
   end
 
   # GET /projects/1/edit
   def edit
+    respond_to do |format|
+      format.turbo_stream do
+        render turbo_stream: turbo_stream.update("modal",
+                                                 partial: "shared/modal",
+                                                 locals: {
+                                                   title: "프로젝트 수정",
+                                                   modal_body_partial: "projects/form",
+                                                   modal_body_locals: { project: @project }
+                                                 })
+      end
+    end
   end
 
   # POST /projects
