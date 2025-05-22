@@ -55,7 +55,19 @@ class TasksController < ApplicationController
     if @task.save
       redirect_to workspace_project_path(@workspace, @project), notice: t(".messages.created")
     else
-      render :new, status: :unprocessable_entity
+      respond_to do |format|
+        format.html { render :new, status: :unprocessable_entity }
+        format.turbo_stream do
+          render turbo_stream: turbo_stream.update("modal",
+                                                   partial: "shared/modal",
+                                                   locals: {
+                                                     title: "작업 생성",
+                                                     modal_body_partial: "tasks/form",
+                                                     modal_body_locals: { task: @task }
+                                                   }),
+                 status: :unprocessable_entity
+        end
+      end
     end
   end
 
@@ -64,7 +76,19 @@ class TasksController < ApplicationController
     if @task.update(task_params)
       redirect_to workspace_project_path(@workspace, @project), notice: t(".messages.updated"), status: :see_other
     else
-      render :edit, status: :unprocessable_entity
+      respond_to do |format|
+        format.html { render :edit, status: :unprocessable_entity }
+        format.turbo_stream do
+          render turbo_stream: turbo_stream.update("modal",
+                                                   partial: "shared/modal",
+                                                   locals: {
+                                                     title: "작업 수정",
+                                                     modal_body_partial: "tasks/form",
+                                                     modal_body_locals: { task: @task }
+                                                   }),
+                 status: :unprocessable_entity
+        end
+      end
     end
   end
 
