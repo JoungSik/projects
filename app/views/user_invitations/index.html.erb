@@ -4,7 +4,7 @@
     <p class="text-gray-500 mt-1"><%= t("user_invitations.index.sub_header") %></p>
   </div>
   <%= link_to t("user_invitations.buttons.create"), new_user_invitation_path,
-              class: "rounded-md my-auto px-3.5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white block font-medium" %>
+              class: "rounded-md my-auto px-3.5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white block font-medium", data: { turbo_stream: true } %>
 </div>
 
 <div class="bg-white rounded-xl shadow-sm overflow-hidden">

@@ -23,8 +23,8 @@ module Projects
     #
     config.time_zone = "Seoul"
     config.i18n.default_locale = :ko
-    config.i18n.available_locales = [ :ko, :en ]
-    config.i18n.fallbacks = [ :ko, :en ]
+    config.i18n.available_locales = [ :ko ]
+    config.i18n.fallbacks = [ :ko ]
     # config.eager_load_paths << Rails.root.join("extras")
   end
 end
