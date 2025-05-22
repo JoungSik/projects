@@ -9,7 +9,17 @@ class UserInvitationsController < ApplicationController
 
   # GET /user_invitations/new
   def new
-    @user_invitation = UserInvitation.new
+    respond_to do |format|
+      format.turbo_stream do
+        render turbo_stream: turbo_stream.update("modal",
+                                                 partial: "shared/modal",
+                                                 locals: {
+                                                   title: "초대하기",
+                                                   modal_body_partial: "user_invitations/form",
+                                                   modal_body_locals: { user_invitation: UserInvitation.new }
+                                                 })
+      end
+    end
   end
 
   # POST /user_invitations

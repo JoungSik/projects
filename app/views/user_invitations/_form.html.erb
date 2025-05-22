@@ -1,10 +1,7 @@
-<%= form_with(model: user_invitation, class: "bg-white rounded-xl shadow-lg w-full max-w-lg mx-4") do |form| %>
+<%= form_with(model: user_invitation, class: "bg-white w-full max-w-lg", data: { turbo_frame: "_top" }) do |form| %>
   <%= render "shared/error", errors: user_invitation.errors %>
 
-  <div class="flex items-center justify-between p-6 border-b">
-    <h2 class="text-xl font-semibold text-gray-900"><%= t("user_invitations.new.header") %></h2>
-  </div>
-  <div class="p-6 space-y-6">
+  <div class="space-y-6">
     <div>
       <label for="invitee_email" class="block text-sm font-medium text-gray-700 mb-2"><%= t("user_invitations.email.label") %></label>
       <%= form.email_field :invitee_email,
@@ -22,8 +19,7 @@
       <p class="mt-4 text-sm text-gray-500"><%= t("user_invitations.notice.expire", expiry: UserInvitation::EXPIRY.in_days.round) %></p>
     </div>
   </div>
-  <div class="flex items-center justify-end gap-3 px-6 py-4 bg-gray-50 rounded-b-xl">
-    <%= link_to t("shared.buttons.cancel"), user_invitations_path, class: "px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50" %>
+  <div class="flex items-center justify-end gap-3 py-4 rounded-b-xl">
     <%= form.submit t("shared.buttons.save"), class: "px-4 py-2 text-sm font-medium text-white bg-indigo-600 rounded-lg hover:bg-indigo-700 cursor-pointer" %>
   </div>
 <% end %>
