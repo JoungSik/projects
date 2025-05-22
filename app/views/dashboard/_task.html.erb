@@ -1,5 +1,5 @@
 <%= content_tag :div, class: "p-4 bg-#{task_status_color(task)}-50 rounded-lg" do %>
-  <%= link_to workspace_project_task_path(task.project.workspace, task.project, task) do %>
+  <%= link_to workspace_project_task_path(task.project.workspace, task.project, task), data: { turbo_stream: true } do %>
     <div class="flex items-center justify-between">
       <div>
         <div class="flex items-center space-x-2 mb-2">

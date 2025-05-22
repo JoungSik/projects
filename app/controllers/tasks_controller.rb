@@ -5,15 +5,47 @@ class TasksController < ApplicationController
 
   # GET /tasks/1
   def show
+    respond_to do |format|
+      format.turbo_stream do
+        render turbo_stream: turbo_stream.update("modal",
+                                                 partial: "shared/modal",
+                                                 locals: {
+                                                   title: @task.title,
+                                                   modal_body_partial: "tasks/show",
+                                                   modal_body_locals: { task: @task }
+                                                 })
+      end
+    end
   end
 
   # GET /tasks/new
   def new
-    @task = Task.new
+    respond_to do |format|
+      format.turbo_stream do
+        render turbo_stream: turbo_stream.update("modal",
+                                                 partial: "shared/modal",
+                                                 locals: {
+                                                   title: "작업 생성",
+                                                   modal_body_partial: "tasks/form",
+                                                   modal_body_locals: { task: Task.new }
+                                                 })
+      end
+    end
   end
 
   # GET /tasks/1/edit
   def edit
+    respond_to do |format|
+      format.turbo_stream do
+        render turbo_stream: turbo_stream.update("modal",
+                                                 partial: "shared/modal",
+                                                 locals: {
+                                                   title: "작업 수정",
+                                                   modal_body_partial: "tasks/form",
+                                                   modal_body_locals: { task: @task }
+                                                 })
+      end
+    end
   end
 
   # POST /tasks

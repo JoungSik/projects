@@ -1,5 +1,5 @@
 <%= content_tag :div, class: "bg-white border border-#{task_status_color(task)}-200 rounded-lg p-4 cursor-pointer hover:shadow-md transition" do %>
-  <%= link_to workspace_project_task_path(workspace, project, task) do %>
+  <%= link_to workspace_project_task_path(workspace, project, task), data: { turbo_stream: true } do %>
     <div class="flex items-center justify-between mb-2">
     <span class="<%= "px-2 py-1 text-xs bg-#{task_type_color(task)}-100 text-#{task_type_color(task)}-700 rounded-full" %>">
       <%= t("activerecord.attributes.task.type.#{task.type}") %>
