@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <%= render "layouts/shared/head" %>
+    <%= yield :head %>
+  </head>
+
+  <body class="min-h-screen bg-gray-100" data-controller="sidebar">
+    <%= render "shared/notice" %>
+
+    <%= yield %>
+
+    <%= turbo_frame_tag "modal" %>
+  </body>
+</html>
