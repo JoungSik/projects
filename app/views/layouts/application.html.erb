@@ -1,50 +1,8 @@
-<!DOCTYPE html>
-<html lang="ko">
-  <head>
-    <title><%= t("app.title") %></title>
-    <meta name="description" content="Projects 는 개인 사이드 프로젝트를 쉽고 효율적으로 관리하고, 신뢰할 수 있는 동료 개발자와 협업할 수 있는 프라이빗 작업 관리 서비스입니다.">
-    <meta name="keywords" content="개인 프로젝트 관리, 사이드 프로젝트 관리, 태스크 관리, 작업 관리, 개발자 협업, 개인 협업툴">
-    <meta name="author" content="Joungsik">
+<%= render "layouts/shared/htmldoc" do %>
+  <%= render "shared/header" %>
+  <%= render "shared/sidebar" %>
 
-    <meta property="og:title" content="<%= t("app.title") %>">
-    <meta property="og:description" content="Projects로 개인 프로젝트를 효율적으로 관리하고 신뢰하는 개발자들과 협업하세요.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://projects.joungsik.com">
-    <meta property="og:site_name" content="Projects">
-    <meta property="og:image" content="/image.png">
-
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="mobile-web-app-capable" content="yes">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
-
-    <%= yield :head %>
-
-    <%# Enable PWA manifest for installable apps (make sure to enable in config/routes.rb too!) %>
-    <%#= tag.link rel: "manifest", href: pwa_manifest_path(format: :json) %>
-
-    <link rel="icon" href="/icon.png" type="image/png">
-    <link rel="apple-touch-icon" href="/icon.png">
-
-    <%# Includes all stylesheet files in app/assets/stylesheets %>
-    <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
-    <%= javascript_importmap_tags %>
-
-    <%= render "layouts/google_analytics" %>
-  </head>
-
-  <body class="min-h-screen bg-gray-100" data-controller="sidebar">
-    <%= render "shared/notice" %>
-
-    <% if authenticated? %>
-      <%= render "shared/header" %>
-      <%= render "shared/sidebar" %>
-    <% end %>
-    <main class="pt-24 px-4 md:px-6 pb-8 <%= authenticated? ? "md:ml-64" : "" %>">
-      <%= yield %>
-    </main>
-
-    <%= turbo_frame_tag "modal" %>
-  </body>
-</html>
+  <main class="pt-24 px-4 md:px-6 pb-8 md:ml-64">
+    <%= yield %>
+  </main>
+<% end %>
