@@ -1,5 +1,4 @@
 module ApplicationHelper
-
   def options_for_enum(model_class, enum)
     enum_hash = model_class.send(enum.to_s.pluralize)
 
