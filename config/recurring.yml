@@ -14,6 +14,10 @@ development:
     class: MarkOverdueTasksJob
     queue: scheduled
     schedule: 0 0 * * *
+  archive_completed_tasks:
+    class: ArchiveCompletedTasksJob
+    queue: scheduled
+    schedule: 0 0 * * *
   cleanup_finished_jobs:
     class: CleanupFinishedJobsJob
     queue: system
@@ -22,6 +26,10 @@ development:
 production:
   mark_overdue_tasks:
     class: MarkOverdueTasksJob
+    queue: scheduled
+    schedule: 0 0 * * *
+  archive_completed_tasks:
+    class: ArchiveCompletedTasksJob
     queue: scheduled
     schedule: 0 0 * * *
   cleanup_finished_jobs:
