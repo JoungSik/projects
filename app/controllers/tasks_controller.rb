@@ -74,11 +74,16 @@ class TasksController < ApplicationController
   # PATCH/PUT /tasks/1
   def update
     if @task.update(task_params)
-      redirect_to workspace_project_path(@workspace, @project), notice: t(".messages.updated"), status: :see_other
+      respond_to do |format|
+        format.json { render json: { message: "태스크가 성공적으로 업데이트되었습니다." }, status: :ok }
+        format.html { redirect_to workspace_project_path(@workspace, @project), notice: t(".messages.updated"), status: :see_other }
+        format.turbo_stream { redirect_to workspace_project_path(@workspace, @project), notice: t(".messages.updated"), status: :see_other }
+      end
     else
       respond_to do |format|
+        format.json { render json: { error: "태스크 업데이트에 실패했습니다.", details: @task.errors.full_messages }, status: :unprocessable_entity }
         format.html { render :edit, status: :unprocessable_entity }
-        format.turbo_stream do
+        format.turbo_stream {
           render turbo_stream: turbo_stream.update("modal",
                                                    partial: "shared/modal",
                                                    locals: {
@@ -87,7 +92,7 @@ class TasksController < ApplicationController
                                                      modal_body_locals: { task: @task }
                                                    }),
                  status: :unprocessable_entity
-        end
+        }
       end
     end
   end

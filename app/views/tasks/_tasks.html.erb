@@ -1,22 +1,63 @@
-<div class="bg-white rounded-xl shadow-sm p-4">
+<div class="bg-white rounded-xl shadow-sm p-4"
+     data-sortable-target="column"
+     data-status-index="<%= index %>">
   <h3 class="font-semibold text-gray-900 mb-4 flex items-center">
     <%= lucide_icon task_status_title_icon(index), class: "w-5 h-5 mr-2 text-#{task_status_title_color(index)}-500" %>
     <%= t("activerecord.attributes.task.status.#{Task.statuses.key(index)}") %>
     <span class="ml-2 px-2 py-1 text-xs bg-gray-100 text-gray-600 rounded-full"><%= count %></span>
   </h3>
-  <% if count == 0 %>
-    <div class="flex flex-col items-center justify-center py-8 text-center">
-      <div class="bg-gray-50 rounded-full p-3 mb-4">
-        <%= lucide_icon "check-circle", class: "w-8 h-8 text-gray-400" %>
+
+  <!-- 통합된 Task 컨테이너 (빈 상태 카드와 실제 Task가 같이 있음) -->
+  <div class="space-y-4 min-h-[100px] drag-optimized"
+       data-sortable-tasks>
+    <% if count == 0 %>
+      <% styles = empty_state_card_classes(index) %>
+      <!-- 빈 상태를 나타내는 Task 스타일 카드 -->
+      <div class="<%= styles[:container] %> empty-state-card" data-empty-state>
+
+        <!-- Task와 유사한 컨텐츠 영역 -->
+        <div class="pointer-events-none">
+          <div class="flex items-center justify-between mb-2">
+            <span class="<%= styles[:badge] %>">
+              작업 타입
+            </span>
+            <span class="<%= styles[:badge] %>">
+              우선순위
+            </span>
+          </div>
+
+          <h4 class="<%= styles[:title] %>">
+            <%= lucide_icon task_status_title_icon(index), class: "w-4 h-4 mr-2" %>
+            <%= index == 5 ? '보관된 작업이 없습니다' : '여기에 작업을 드래그하세요' %>
+          </h4>
+
+          <div class="flex flex-col space-y-2">
+            <div class="flex items-center opacity-50">
+              <div class="<%= styles[:avatar_bg] %>">
+                <%= lucide_icon "user", class: styles[:avatar_icon] %>
+              </div>
+              <span class="<%= styles[:text] %> ml-2">담당자 없음</span>
+            </div>
+
+            <div class="flex items-center opacity-50">
+              <%= lucide_icon "calendar", class: styles[:icon] %>
+              <span class="<%= styles[:text] %>">기한 없음</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 추가 안내 텍스트 (빈 상태 카드 내부에 배치) -->
+        <div class="text-center mt-3 pt-2 border-t border-current border-opacity-20">
+          <p class="<%= styles[:description] %>">
+            <%= t("tasks.blank.description") %>
+          </p>
+        </div>
       </div>
-      <p class="text-gray-500 text-sm"><%= t("tasks.blank.title") %></p>
-      <p class="text-gray-400 text-xs mt-1"><%= t("tasks.blank.description") %></p>
-    </div>
-  <% else %>
-    <div class="space-y-4">
+    <% else %>
+      <!-- 실제 Task들 -->
       <% tasks&.each do |task| %>
         <%= render "tasks/task", workspace: workspace, project: project, task: task %>
       <% end %>
-    </div>
-  <% end %>
+    <% end %>
+  </div>
 </div>

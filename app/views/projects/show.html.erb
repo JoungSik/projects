@@ -48,7 +48,10 @@
   </div>
 
   <div data-tabs-target="content" class="p-6">
-    <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6">
+    <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6 drag-optimized"
+         data-controller="sortable"
+         data-sortable-workspace-id-value="<%= @workspace.id %>"
+         data-sortable-project-id-value="<%= @project.id %>">
       <% Task.visible_statuses.each_with_index do |status, i| %>
         <%= render "tasks/tasks", index: i, count: @tasks.fetch(status[0], []).count,
                    workspace: @workspace, project: @project, tasks: @tasks[status[0]] %>
